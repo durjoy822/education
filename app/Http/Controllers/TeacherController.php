@@ -37,31 +37,27 @@ class TeacherController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'department' => 'required|string|max:255',
-            'shortDescription' => 'required|string|max:255',
+            'shortDescription' => 'required|string',
             'longDescription' => 'required|string',
-            'facebook' => 'nullable|string|max:255',
-            'twitter' => 'nullable|string|max:255',
-            'instagram' => 'nullable|string|max:255',
-            'github' => 'nullable|string|max:255',
-            'status' => 'required|in:active,inactive',
-            'image' => 'required|image|max:2048', // Assuming maximum image size is 2MB
+            'image' => 'required',
         ]);
-                // $teacher=new Teacher();
-                // $teacher->name=$request->name;
-                // $teacher->department=$request->department;
-                // $teacher->short_description=$request->short_description;
-                // $teacher->long_description=$request->long_description;
-                // $teacher->facebook=$request->facebook;
-                // $teacher->twitter=$request->twitter;
-                // $teacher->instagram=$request->instagram;
-                // $teacher->github=$request->github;
-                // $teacher->status=$request->status;
-                // $teacher->image=Self::fileUpload($request);
-                // $teacher->save();
-                // Session::flash('success', 'Teacher  stored successfully.');
-                // return back();
+        $teacher = new Teacher();
+        $teacher->name = $request->name;
+        $teacher->department = $request->department;
+        $teacher->short_description = $request->shortDescription;
+        $teacher->long_description = $request->longDescription;
+        $teacher->facebook = $request->facebook;
+        $teacher->twitter = $request->twitter;
+        $teacher->instagram = $request->instagram;
+        $teacher->github = $request->github;
+        $teacher->status = $request->status;
+        $teacher->image = $this->fileUpload($request);
+        $teacher->save();
+        return response()->json([
+            'status' => 'success'
+    ]);
 
-        }
+    }
 
 
 
@@ -94,7 +90,33 @@ class TeacherController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'department' => 'required|string|max:255',
+            'shortDescription' => 'required|string',
+            'longDescription' => 'required|string',
+            'image' => 'required',
+        ]);
+        $teacher = Teacher::findOrFail($id);
+        $teacher->name = $request->name;
+        $teacher->department = $request->department;
+        $teacher->short_description = $request->shortDescription;
+        $teacher->long_description = $request->longDescription;
+        $teacher->facebook = $request->facebook;
+        $teacher->twitter = $request->twitter;
+        $teacher->instagram = $request->instagram;
+        $teacher->github = $request->github;
+        $teacher->status = $request->status;
+        if($request->file('image')){
+            if(file_exists($teacher->image)){
+                unlink($teacher->image);
+            }
+            $teacher->image = $this->fileUpload($request);
+        }
+        $teacher->save();
+        return response()->json([
+            'status' => 'success'
+    ]);
     }
 
     /**

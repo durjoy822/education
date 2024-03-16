@@ -12,7 +12,6 @@
                     <div class="card card-body">
                         <form class="form-horizontal" id="updateCategoryForm" action="" method="POST" enctype="multipart/form-data">
                             @csrf
-                            {{$method="PUT"}}
                             <input type="hidden" id="up_id">
                             <div class="row mb-3">
                                 <label for="up_image" class="col-md-3  col-form-label">Category Image</label>
@@ -55,14 +54,14 @@
         let formData = new FormData();
         formData.append('up_name', up_name);
         formData.append('up_image', up_image);
-        formData.append('_token', csrfToken); // Use fetched CSRF token value
+        formData.append('_token', csrfToken);
         formData.append('_method', 'PUT');
 
         $.ajax({
             url: "/crouseCategory/" + up_id,
-            method: 'POST', // Change method to POST
+            method: 'POST',
             headers: {
-                'X-CSRF-TOKEN': csrfToken // Include CSRF token in request headers
+                'X-CSRF-TOKEN': csrfToken 
             },
             data: formData,
             contentType: false,

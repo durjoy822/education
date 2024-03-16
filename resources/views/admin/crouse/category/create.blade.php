@@ -68,7 +68,6 @@
                  }
              },
              error: function(err) {
-                 // Handle error response
                  let error = err.responseJSON;
                  $('.errorMsgContainer').empty();
                  $.each(error.errors, function(index, value) {
