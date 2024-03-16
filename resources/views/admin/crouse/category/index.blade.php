@@ -29,8 +29,13 @@
                             @foreach ($crouseCats as $index => $crouseCat)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td><img src="{{ asset($crouseCat->image) }}" alt="category-img" height="60"
-                                            width="60"></td>
+                                    <td>
+                                        @if ($crouseCat->image)
+                                            <img src="{{ asset($crouseCat->image) }}" alt="{{ $crouseCat->name }}" height="60" width="60" />
+                                        @else
+                                            <img src="{{asset('admin')}}/assets/images/not_found/not_found_img.png" alt="No Image Available" height="60" width="60" />
+                                        @endif
+                                    </td>
                                     <td>{{ $crouseCat->name }}</td>
                                     <td>
                                         <button type="button" data-bs-target="#updateCategoryModal" data-bs-toggle="modal"
