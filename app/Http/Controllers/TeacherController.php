@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CrouseCategory;
 use Carbon\Carbon;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
@@ -14,8 +15,6 @@ class TeacherController extends Controller
      */
     public function index()
     {
-
-        // return Teacher::latest()->get();
         return view('admin.teacher.index',[
             'teachers'=>Teacher::latest()->get(),
         ]);
@@ -26,7 +25,9 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.teacher.create',[
+            'crouseCats'=>CrouseCategory::all(),
+        ]);
     }
 
     /**
@@ -34,18 +35,19 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->all();
         $request->validate([
             'name' => 'required|string|max:255',
             'department' => 'required|string|max:255',
-            'shortDescription' => 'required|string',
-            'longDescription' => 'required|string',
+            'short_description' => 'required|string',
+            'long_description' => 'required|string',
             'image' => 'required',
         ]);
         $teacher = new Teacher();
         $teacher->name = $request->name;
         $teacher->department = $request->department;
-        $teacher->short_description = $request->shortDescription;
-        $teacher->long_description = $request->longDescription;
+        $teacher->short_description = $request->short_description;
+        $teacher->long_description = $request->long_description;
         $teacher->facebook = $request->facebook;
         $teacher->twitter = $request->twitter;
         $teacher->instagram = $request->instagram;
@@ -53,10 +55,8 @@ class TeacherController extends Controller
         $teacher->status = $request->status;
         $teacher->image = $this->fileUpload($request);
         $teacher->save();
-        return response()->json([
-            'status' => 'success'
-    ]);
-
+        Session::flash('success','Teacher create successfully');
+        return redirect()->route('teachers.index');
     }
 
 
@@ -67,7 +67,9 @@ class TeacherController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('admin.teacher.show',[
+            'teacher'=>Teacher::find($id),
+        ]);
     }
 
     /**
@@ -75,33 +77,27 @@ class TeacherController extends Controller
      */
     public function edit($id)
     {
-        // $teacher= Teacher::find($_GET['id']);
-        // $teacher->image = asset($teacher->image);
-        // return response()->json($teacher);
-        $teacher=Teacher::find($id);
-        return view('admin.teacher.index',[
-            'teacher'=>$teacher,
-            'teachers'=>Teacher::latest()->get(),
+        return view('admin.teacher.edit',[
+            'teacher'=>Teacher::find($id),
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'department' => 'required|string|max:255',
-            'shortDescription' => 'required|string',
-            'longDescription' => 'required|string',
-            'image' => 'required',
+            'short_description' => 'required|string',
+            'long_description' => 'required|string',
         ]);
-        $teacher = Teacher::findOrFail($id);
+        $teacher = Teacher::find($id);
         $teacher->name = $request->name;
         $teacher->department = $request->department;
-        $teacher->short_description = $request->shortDescription;
-        $teacher->long_description = $request->longDescription;
+        $teacher->short_description = $request->short_description;
+        $teacher->long_description = $request->long_description;
         $teacher->facebook = $request->facebook;
         $teacher->twitter = $request->twitter;
         $teacher->instagram = $request->instagram;
@@ -111,12 +107,11 @@ class TeacherController extends Controller
             if(file_exists($teacher->image)){
                 unlink($teacher->image);
             }
-            $teacher->image = $this->fileUpload($request);
+            $teacher->image=$this->fileUpload($request);
         }
         $teacher->save();
-        return response()->json([
-            'status' => 'success'
-    ]);
+        Session::flash('success','Teacher updated successfully');
+        return redirect()->route('teachers.index');
     }
 
     /**
@@ -124,7 +119,13 @@ class TeacherController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $teacher=Teacher::find($id);
+        if(file_exists($teacher->image)){
+            unlink($teacher->image);
+        }
+        $teacher->delete();
+        Session::flash('success','Teacher Delete successfully');
+        return back();
 
    }
 

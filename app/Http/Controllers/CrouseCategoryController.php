@@ -24,7 +24,7 @@ class CrouseCategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.crouse.category.create');
     }
 
     /**
@@ -40,9 +40,8 @@ class CrouseCategoryController extends Controller
         $crouseCat->name=$request->name;
         $crouseCat->image=$this->getImgUrl($request);
         $crouseCat->save();
-       return response()->json([
-        'status'=> 'success',
-       ]);
+        Session::flash('success','Crouse Category added');
+        return redirect()->route('crouseCategory.index');
 
     }
 
@@ -59,7 +58,10 @@ class CrouseCategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('admin.crouse.category.edit',[
+            'category'=>CrouseCategory::find($id), 
+        ]);
+
     }
 
     /**
@@ -68,22 +70,22 @@ class CrouseCategoryController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'up_name' => 'required',
-            'up_image' => 'nullable',
+            'name'=>'required|unique:crouse_categories',
+            'image' => 'nullable',
         ]);
 
         $category = CrouseCategory::findOrFail($id);
-        $category->name = $request->input('up_name');
-        if ($request->hasFile('up_image')) {
-            $image = $request->file('up_image');
+        $category->name = $request->input('image');
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
             $image->move(public_path('images'), $imageName);
             $category->image = 'images/' . $imageName;
         }
         $category->save();
-        return response()->json([
-            'status' => 'success'
-    ]);
+        Session::flash('success','Crouse Category updated');
+        return redirect()->route('crouseCategory.index');
+
     }
 
     /**

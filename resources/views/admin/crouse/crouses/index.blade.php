@@ -1,6 +1,6 @@
 @extends('admin.layout.master')
 @section('title')
-    Teacher Manage
+    Crouses Manage
 @endsection
 @section('body')
     <div class="row">
@@ -9,9 +9,9 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h4 class="header-title float-start mt-2">All Teachers Information</h4>
-                            <a href="{{route('teachers.create')}}"><button type="button"
-                                class="btn btn-light float-end">Add New Teacher</button></a>
+                            <h4 class="header-title float-start mt-2">All Crouses Information</h4>
+                            <a href="{{route('crouses.create')}}"><button type="button"
+                                class="btn btn-light float-end">Add New Crouse</button></a>
                         </div>
                     </div>
                     <hr />
@@ -21,38 +21,38 @@
                             <tr>
                                 <th>SL NO</th>
                                 <th>Image</th>
-                                <th>Name</th>
-                                <th>Department</th>
+                                <th>Category</th>
+                                <th>teacher</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @if ($teachers->count() > 0)
-                            @foreach ($teachers as $index => $teacher)
+                            @if ($crouses->count() > 0)
+                            @foreach ($crouses as $index => $crouse)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>
-                                    @if ($teacher->image)
-                                        <img src="{{ asset($teacher->image) }}" alt="{{ $teacher->name }}" height="60" width="60" />
+                                    @if ($crouse->image)
+                                        <img src="{{ asset($crouse->image) }}" alt="" height="60" width="60" />
                                     @else
                                         <img src="{{asset('admin')}}/assets/images/not_found/not_found_img.png" alt="No Image Available" height="60" width="60" />
                                     @endif
                                 </td>
 
-                                <td>{{ $teacher->name }}</td>
-                                <td>{{ $teacher->department}}</td>
-                                <td>{{ $teacher->status == 1 ? 'Published' : 'Unpublished' }}</td>
+                                <td>{{ $crouse->Category }}</td>
+                                <td>{{ $crouse->Teacher->name }}</td>
+                                <td>{{ $crouse->status == 1 ? 'Published' : 'Unpublished' }}</td>
                                 <td>
-                                    <a href="{{route('teachers.show',$teacher->id)}}" class="btn btn-success btn-sm" title="Edit">
+                                    <a href="{{route('crouses.show',$crouse->id)}}" class="btn btn-success btn-sm" title="Edit">
                                         <i class="fa-solid fa-eye"></i> View
                                     </a>
-                                    <a href="{{route('teachers.edit',$teacher->id)}}"
+                                    <a href="{{route('crouses.edit',$crouse->id)}}"
                                     class="btn btn-success btn-sm TeacherUpdateForm"
                                     title="Edit">
                                     <i class="ri-edit-box-fill"></i> Edit
                                     </a>
-                                    <form action="{{route('teachers.destroy',$teacher->id)}}" method="POST" style="display: inline;">
+                                    <form action="{{route('crouses.destroy',$crouse->id)}}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this teacher?');">

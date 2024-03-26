@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CrouseCategoryController;
+use App\Http\Controllers\CrouseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RoleController;
@@ -53,5 +54,6 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'),  'verified
 
     Route::resource('/teachers',TeacherController::class);
     Route::resource('/crouseCategory',CrouseCategoryController::class);
+    Route::resource('/crouses',CrouseController::class );
 
 });

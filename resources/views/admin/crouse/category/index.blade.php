@@ -10,8 +10,8 @@
                     <div class="row">
                         <div class="col">
                             <h4 class="header-title float-start mt-2"> Crouse Category info</h4>
-                            <button type="button" data-bs-target="#addCategoryModal" data-bs-toggle="modal"
-                                class="btn btn-light float-end">Add New Category</button>
+                            <a href="{{route('crouseCategory.create')}}"><button type="button" data-bs-target="#addCategoryModal" data-bs-toggle="modal"
+                                class="btn btn-light float-end">Add New Category</button></a>
                         </div>
                     </div>
                     <hr />
@@ -38,18 +38,18 @@
                                     </td>
                                     <td>{{ $crouseCat->name }}</td>
                                     <td>
-                                        <button type="button" data-bs-target="#updateCategoryModal" data-bs-toggle="modal"
-                                            class="btn btn-success btn-sm update_category_form" title="Edit"
-                                            data-id="{{ $crouseCat->id }}" data-name="{{ $crouseCat->name }}"
-                                            data-image="{{ $crouseCat->image }}">
-                                            <i class="ri-edit-box-fill"></i>
-                                        </button>
-                                        <a href="" class="btn btn-danger btn-sm deleteCrouseCat"
-                                         data-id="{{ $crouseCat->id }}"  title="Delete"
-                                            {{-- onclick="return confirm('Ary you sure to delete this..');" --}}
-                                            >
-                                            <i class="ri-chat-delete-fill"></i>
+                                        <a href="{{route('crouseCategory.edit',$crouseCat->id)}}"
+                                        class="btn btn-success btn-sm TeacherUpdateForm"
+                                        title="Edit">
+                                        <i class="ri-edit-box-fill"></i> Edit
                                         </a>
+                                        <form action="{{route('crouseCategory.destroy',$crouseCat->id)}}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this teacher?');">
+                                                <i class="ri-chat-delete-fill"></i> Delete
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -65,41 +65,6 @@
             </div>
         </div>
     </div>
-    @include('admin.crouse.category.create')
-    @include('admin.crouse.category.edit')
-
-
-
-
-<!-----------Delete crouse category data ------------->
-<script>
-    $(document).ready(function() {
-        let csrfToken = $('meta[name="csrf-token"]').attr('content');
-
-        $(document).on('click', '.deleteCrouseCat', function(e) {
-            e.preventDefault();
-            let category_id = $(this).data('id');
-            if (confirm('Are you sure you want to delete this row?')) {
-                $.ajax({
-                    url: "/crouseCategory/" + category_id,
-                    type: 'DELETE',
-                    headers: {
-                        'X-CSRF-TOKEN': csrfToken
-                    },
-                    success: function(res) {
-                        if (res.status == 'success') {
-                            $('.table').load(location.href + ' .table');
-                        }
-                    },
-                });
-            }
-        });
-    });
-</script>
-
-
-
-
 
 @endsection
 
