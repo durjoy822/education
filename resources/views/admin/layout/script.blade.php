@@ -7,7 +7,7 @@
 <script src="{{asset('/')}}admin/assets/vendor/daterangepicker/daterangepicker.js"></script>
 
 <!-- Apex Charts js -->
-{{-- <script src="{{asset('/')}}admin/assets/vendor/apexcharts/apexcharts.min.js"></script> --}}
+<script src="{{asset('/')}}admin/assets/vendor/apexcharts/apexcharts.min.js"></script>
 
 <!-- Vector Map js -->
 <script src="{{asset('/')}}admin/assets/vendor/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
@@ -34,18 +34,25 @@
 <script src="{{asset('/')}}admin/assets/js/pages/demo.datatable-init.js"></script>
 <!-- App js -->
 <script src="{{asset('/')}}admin/assets/js/app.js"></script>
-<!--ck Editor-->
-<script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
 <!--fontawesome-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 <script>
-    ClassicEditor
-        .create( document.querySelector( '#editor' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-    </script>
-
+    $('#summernote').summernote({
+      tabsize: 2,
+      height: 120,
+      toolbar: [
+        ['style', ['style']],
+        ['font', ['bold', 'underline', 'clear']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'video']],
+        ['view', ['fullscreen', 'codeview', 'help']]
+      ]
+    });
+  </script>

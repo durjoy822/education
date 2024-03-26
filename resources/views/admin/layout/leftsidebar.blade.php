@@ -84,6 +84,9 @@
                 <div class="collapse" id="teachers">
                     <ul class="side-nav-second-level">
                         <li>
+                            <a href="{{route('teachers.create')}}">Teacher create</a>
+                        </li>
+                        <li>
                             <a href="{{route('teachers.index')}}">Teacher manage</a>
                         </li>
                     </ul>
@@ -103,10 +106,7 @@
                             <a href="{{route('crouseCategory.index')}}"> Crouse Category</a>
                         </li>
                         <li>
-                            <a href=""> Crouse sub category</a>
-                        </li>
-                        <li>
-                            <a href=""> Crouse </a>
+                            <a href="{{route('crouses.index')}}"> Crouse </a>
                         </li>
                     </ul>
                 </div>
