@@ -115,7 +115,7 @@
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#blog" aria-expanded="false"
                    aria-controls="blog" class="side-nav-link">
-                   <i class="fa-brands fa-hive"></i>
+                   <i class="fa-solid fa-boxes-stacked"></i>
                     <span> Blog </span>
                     <span class="menu-arrow"></span>
                 </a>
@@ -141,10 +141,10 @@
                 <div class="collapse" id="about">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="">About Create</a>
+                            <a href="{{route('abouts.create')}}">About Create</a>
                         </li>
                         <li>
-                            <a href=""> About Manage </a>
+                            <a href="{{route('abouts.index')}}"> About Manage </a>
                         </li>
                     </ul>
                 </div>
@@ -160,10 +160,10 @@
                 <div class="collapse" id="event">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="">Events Create</a>
+                            <a href="{{route('events.create')}}">Events Create</a>
                         </li>
                         <li>
-                            <a href=""> Events Manage </a>
+                            <a href="{{route('events.index')}}"> Events Manage </a>
                         </li>
                     </ul>
                 </div>
@@ -179,10 +179,10 @@
                 <div class="collapse" id="testimonial">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="">Testimonial Create</a>
+                            <a href="{{route('testimonials.create')}}">Testimonial Create</a>
                         </li>
                         <li>
-                            <a href=""> Testimonial Manage </a>
+                            <a href="{{route('testimonials.index')}}"> Testimonial Manage </a>
                         </li>
                     </ul>
                 </div>
@@ -206,7 +206,7 @@
                     </ul>
                 </div>
             </li>
-            <!--Contact  module--->
+            <!--setting  module--->
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#settings" aria-expanded="false"
                    aria-controls="settings" class="side-nav-link">
@@ -221,6 +221,25 @@
                         </li>
                         <li>
                             <a href=""> Settings Manage </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <!--Optimize  module--->
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#Optimize" aria-expanded="false"
+                   aria-controls="Optimize" class="side-nav-link">
+                   <i class="fa-brands fa-hive"></i>
+                    <span> Optimize </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="Optimize">
+                    <ul class="side-nav-second-level">
+                        {{-- <li>
+                            <a href="">Settings Create</a>
+                        </li> --}}
+                        <li>
+                            <a href="{{route('optimize.index')}}"> Optimize Manage </a>
                         </li>
                     </ul>
                 </div>

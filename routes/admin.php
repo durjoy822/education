@@ -1,15 +1,18 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CrouseCategoryController;
 use App\Http\Controllers\CrouseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\TestimonialController;
+use App\Http\Controllers\OptimizeController;
 use App\Http\Controllers\UserController ;
-use App\Models\BlogCategory;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,10 +57,16 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'),  'verified
     Route::post('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
     Route::get('/user/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
 
+    Route::get('/optimize', [OptimizeController::class, 'index'])->name('optimize.index');
+    Route::get('/case/clear', [OptimizeController::class, 'caseClear'])->name('case.clear');
+
     Route::resource('/teachers',TeacherController::class);
     Route::resource('/crouseCategory',CrouseCategoryController::class);
     Route::resource('/crouses',CrouseController::class );
     Route::resource('/blogs_cats',BlogCategoryController::class );
     Route::resource('/blogs',BlogController::class );
+    Route::resource('/abouts',AboutController::class );
+    Route::resource('/events',EventController::class );
+    Route::resource('/testimonials',TestimonialController::class );
 
 });
