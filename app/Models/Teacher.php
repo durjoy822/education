@@ -9,6 +9,9 @@ class Teacher extends Model
 {
     use HasFactory;
 
-
+    public function Category()
+    {
+        return $this->belongsTo(CrouseCategory::class);
+    }
 
 }

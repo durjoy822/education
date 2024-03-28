@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('crouses', function (Blueprint $table) {
             $table->id();
-            $table->integer('category_id');
-            $table->integer('teacher_id');
+            $table->integer('category_id')->nullable();
+            $table->integer('teacher_id')->nullable();
             $table->string('crouse_title');
             $table->string('price');
             $table->string('crouse_validation');

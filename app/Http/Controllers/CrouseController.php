@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Crouse;
-use App\Models\CrouseCategory;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use App\Models\CrouseCategory;
 
 class CrouseController extends Controller
 {
@@ -15,7 +16,7 @@ class CrouseController extends Controller
     public function index()
     {
         return view('admin.crouse.crouses.index',[
-            'crouses'=>Crouse::all(), 
+            'crouses'=>Crouse::all(),
         ]);
     }
 
@@ -48,7 +49,7 @@ class CrouseController extends Controller
         $crouse->short_description=$request->short_description;
         $crouse->long_description=$request->long_description;
         $crouse->status=$request->status;
-        $crouse->image=$request->image;
+        $crouse->image=$this->getImgUrl($request);
         $crouse->save();
         return redirect()->route('crouses.index');
     }
@@ -83,5 +84,15 @@ class CrouseController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function getImgUrl($request){
+        $timestamp = Carbon::now()->format('Y-m-d_H-i-s');
+        $photo=$request->file('image');
+        $photoName=$timestamp.'.'.$photo->extension();
+        $dir='adminAsset/crouse/';
+        $imgUrl=$dir.$photoName;
+        $photo->move($dir,$photoName);
+        return $imgUrl;
     }
 }
