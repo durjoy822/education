@@ -11,18 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('teachers', function (Blueprint $table) {
+        Schema::create('blogs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('image')->nullable();
-            $table->integer('department')->nullable()->comment('department=category_id');
-            $table->longText('long_description')->nullable();
+            $table->string('title');
+            $table->string('created_by')->nullable();
+            $table->string('creating_date')->nullable();
+            $table->string('blog_category_id')->nullable();
             $table->longText('short_description')->nullable();
+            $table->longText('long_description')->nullable();
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();
             $table->string('instagram')->nullable();
-            $table->string('github')->nullable();
-            $table->tinyInteger('status')->default('1')->comment('1=published , 0=unpublished');
+            $table->string('google_plus')->nullable();
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -32,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('teachers');
+        Schema::dropIfExists('blogs');
     }
 };

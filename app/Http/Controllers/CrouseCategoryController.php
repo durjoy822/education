@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Crouse;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\CrouseCategory;
@@ -59,7 +60,7 @@ class CrouseCategoryController extends Controller
     public function edit(string $id)
     {
         return view('admin.crouse.category.edit',[
-            'category'=>CrouseCategory::find($id), 
+            'category'=>CrouseCategory::find($id),
         ]);
 
     }
@@ -70,17 +71,18 @@ class CrouseCategoryController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'name'=>'required|unique:crouse_categories',
+            'name'=>'nullable',
             'image' => 'nullable',
         ]);
 
-        $category = CrouseCategory::findOrFail($id);
-        $category->name = $request->input('image');
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $imageName);
-            $category->image = 'images/' . $imageName;
+
+        $category=CrouseCategory::find($id);
+        $category->name=$request->name;
+        if($request->file('image')){
+            if(file_exists($category->image)){
+                unlink($category->image);
+            }
+            $category->image=$this->getImgUrl($request);
         }
         $category->save();
         Session::flash('success','Crouse Category updated');
@@ -93,15 +95,13 @@ class CrouseCategoryController extends Controller
      */
     public function destroy(Request $request, $id){
 
-    $courseCat = CrouseCategory::find($id);
-    if (file_exists($courseCat->image)) {
-        unlink($courseCat->image);
+    $category = CrouseCategory::find($id);
+    if (file_exists($category->image)) {
+        unlink($category->image);
     }
-    $courseCat->delete();
-    return response()->json([
-        'status' => 'success',
-        'message' => 'Course category deleted successfully'
-    ]);
+    $category->delete();
+    Session::flash('success','Crouse Category Deleted');
+    return back();
 }
 
     public function getImgUrl($request){

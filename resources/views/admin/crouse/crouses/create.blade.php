@@ -123,7 +123,7 @@
                         </div>
                         <div class="justify-content-end row">
                             <div class="col-md-9">
-                                <button type="submit" class="btn btn-info addTeacher">Create New Teacher</button>
+                                <button type="submit" class="btn btn-info addTeacher">Create New Crouse</button>
                             </div>
                         </div>
                     </form>

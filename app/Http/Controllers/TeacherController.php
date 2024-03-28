@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Crouse;
 use App\Models\CrouseCategory;
 use Carbon\Carbon;
 use App\Models\Teacher;
@@ -53,7 +54,7 @@ class TeacherController extends Controller
         $teacher->instagram = $request->instagram;
         $teacher->github = $request->github;
         $teacher->status = $request->status;
-        $teacher->image = $this->fileUpload($request);
+        $teacher->image = $this->getImageUrl($request);
         $teacher->save();
         Session::flash('success','Teacher create successfully');
         return redirect()->route('teachers.index');
@@ -69,6 +70,7 @@ class TeacherController extends Controller
     {
         return view('admin.teacher.show',[
             'teacher'=>Teacher::find($id),
+
         ]);
     }
 
@@ -79,6 +81,7 @@ class TeacherController extends Controller
     {
         return view('admin.teacher.edit',[
             'teacher'=>Teacher::find($id),
+            'crouseCats'=>CrouseCategory::all(),
         ]);
     }
 
@@ -107,7 +110,7 @@ class TeacherController extends Controller
             if(file_exists($teacher->image)){
                 unlink($teacher->image);
             }
-            $teacher->image=$this->fileUpload($request);
+            $teacher->image=$this->getImageUrl($request);
         }
         $teacher->save();
         Session::flash('success','Teacher updated successfully');
@@ -120,16 +123,16 @@ class TeacherController extends Controller
     public function destroy(string $id)
     {
         $teacher=Teacher::find($id);
+        $teacher=Crouse::find($id);
         if(file_exists($teacher->image)){
             unlink($teacher->image);
         }
-        $teacher->delete();
         Session::flash('success','Teacher Delete successfully');
         return back();
 
    }
 
-   public function fileUpload($request){
+   public function getImageUrl($request){
     $timestamp = Carbon::now()->format('Y-m-d_H-i-s');
     $photo=$request->file('image');
     $photoName=$timestamp.'.'.$photo->extension();

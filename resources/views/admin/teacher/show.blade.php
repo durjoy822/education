@@ -14,7 +14,7 @@
                     </div>
                     <hr />
                     <p class="text-muted font-14">{{ Session::get('success') }}</p>
-                    <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
+                    <table id="datatable-buttons" class="table table-striped dt-responsive ">
 
                         <tbody>
                             <tr>

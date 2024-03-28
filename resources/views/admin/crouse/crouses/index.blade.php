@@ -40,7 +40,7 @@
                                     @endif
                                 </td>
 
-                                <td>{{ $crouse->Category }}</td>
+                                <td>{{ $crouse->Category->name }} </td>
                                 <td>{{ $crouse->Teacher->name }}</td>
                                 <td>{{ $crouse->status == 1 ? 'Published' : 'Unpublished' }}</td>
                                 <td>

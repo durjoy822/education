@@ -122,13 +122,105 @@
                 <div class="collapse" id="blog">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href=""> Blog Category</a>
+                            <a href="{{route('blogs_cats.index')}}"> Blog Category</a>
                         </li>
                         <li>
-                            <a href=""> Blog sub category</a>
+                            <a href="{{route('blogs.index')}}"> Blog </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <!--About  module--->
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#about" aria-expanded="false"
+                   aria-controls="about" class="side-nav-link">
+                   <i class="fa-brands fa-hive"></i>
+                    <span> About </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="about">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="">About Create</a>
                         </li>
                         <li>
-                            <a href=""> Blog </a>
+                            <a href=""> About Manage </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <!--Event  module--->
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#event" aria-expanded="false"
+                   aria-controls="event" class="side-nav-link">
+                   <i class="fa-brands fa-hive"></i>
+                    <span> Events </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="event">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="">Events Create</a>
+                        </li>
+                        <li>
+                            <a href=""> Events Manage </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <!--Testimonial  module--->
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#testimonial" aria-expanded="false"
+                   aria-controls="testimonial" class="side-nav-link">
+                   <i class="fa-brands fa-hive"></i>
+                    <span> Testimonial </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="testimonial">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="">Testimonial Create</a>
+                        </li>
+                        <li>
+                            <a href=""> Testimonial Manage </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <!--Contact  module--->
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#contact" aria-expanded="false"
+                   aria-controls="contact" class="side-nav-link">
+                   <i class="fa-brands fa-hive"></i>
+                    <span> Contacts </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="contact">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="">Contacts Create</a>
+                        </li>
+                        <li>
+                            <a href=""> Contacts Manage </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <!--Contact  module--->
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#settings" aria-expanded="false"
+                   aria-controls="settings" class="side-nav-link">
+                   <i class="fa-brands fa-hive"></i>
+                    <span> Settings </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="settings">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="">Settings Create</a>
+                        </li>
+                        <li>
+                            <a href=""> Settings Manage </a>
                         </li>
                     </ul>
                 </div>

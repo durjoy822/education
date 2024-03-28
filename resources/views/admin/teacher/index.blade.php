@@ -41,7 +41,7 @@
                                 </td>
 
                                 <td>{{ $teacher->name }}</td>
-                                <td>{{ $teacher->department}}</td>
+                                <td>{{ $teacher->department }}</td>
                                 <td>{{ $teacher->status == 1 ? 'Published' : 'Unpublished' }}</td>
                                 <td>
                                     <a href="{{route('teachers.show',$teacher->id)}}" class="btn btn-success btn-sm" title="Edit">

@@ -42,7 +42,6 @@
                                     @foreach ($crouseCats as $crouseCat )
                                     <option value="{{$crouseCat->id}}">{{$crouseCat->name}}</option>
                                     @endforeach
-
                                   </select>
                             </div>
                         </div>

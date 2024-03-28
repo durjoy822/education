@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BlogCategoryController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CrouseCategoryController;
 use App\Http\Controllers\CrouseController;
 use Illuminate\Support\Facades\Route;
@@ -7,7 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\UserController ;
-
+use App\Models\BlogCategory;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,5 +57,7 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'),  'verified
     Route::resource('/teachers',TeacherController::class);
     Route::resource('/crouseCategory',CrouseCategoryController::class);
     Route::resource('/crouses',CrouseController::class );
+    Route::resource('/blogs_cats',BlogCategoryController::class );
+    Route::resource('/blogs',BlogController::class );
 
 });
