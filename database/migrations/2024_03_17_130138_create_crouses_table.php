@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('class_size');
             $table->string('class_duration');
             $table->string('total_seat');
-            $table->string('short_description');
-            $table->string('long_description');
+            $table->longText('short_description');
+            $table->longText('long_description');
             $table->string('status');
             $table->string('image');
             $table->timestamps();

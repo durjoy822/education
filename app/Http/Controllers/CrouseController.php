@@ -36,7 +36,16 @@ class CrouseController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->all();
+        $request->validate([
+            'crouse_title'=>'required',
+            'price'=>'required',
+            'crouse_validation'=>'required',
+            'class_size'=>'required',
+            'class_duration'=>'required',
+            'total_seat'=>'required',
+            'long_description'=>'required',
+            'short_description'=>'required',
+        ]);
         $crouse= new Crouse();
         $crouse->category_id=$request->category_id;
         $crouse->teacher_id=$request->teacher_id;
@@ -49,7 +58,9 @@ class CrouseController extends Controller
         $crouse->short_description=$request->short_description;
         $crouse->long_description=$request->long_description;
         $crouse->status=$request->status;
-        $crouse->image=$this->getImgUrl($request);
+        if($request->image){
+            $crouse->image=$this->getImgUrl($request);
+        }
         $crouse->save();
         return redirect()->route('crouses.index');
     }
@@ -59,7 +70,9 @@ class CrouseController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('admin.crouse.crouses.show',[
+            'crouse'=>Crouse::find($id),
+        ]);
     }
 
     /**
@@ -67,7 +80,11 @@ class CrouseController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('admin.crouse.crouses.edit',[
+            'crouse'=>Crouse::find($id),
+            'crouseCats'=>CrouseCategory::all(),
+            'teachers'=>Teacher::all(),
+        ]);
     }
 
     /**
@@ -75,7 +92,36 @@ class CrouseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'crouse_title'=>'required',
+            'price'=>'required',
+            'crouse_validation'=>'required',
+            'class_size'=>'required',
+            'class_duration'=>'required',
+            'total_seat'=>'required',
+            'long_description'=>'required',
+            'short_description'=>'required',
+        ]);
+        $crouse=Crouse::find($id);
+        $crouse->category_id=$request->category_id;
+        $crouse->teacher_id=$request->teacher_id;
+        $crouse->crouse_title=$request->crouse_title;
+        $crouse->price=$request->price;
+        $crouse->crouse_validation=$request->crouse_validation;
+        $crouse->class_size=$request->class_size;
+        $crouse->class_duration=$request->class_duration;
+        $crouse->total_seat=$request->total_seat;
+        $crouse->short_description=$request->short_description;
+        $crouse->long_description=$request->long_description;
+        $crouse->status=$request->status;
+        if($request->file('image')){
+            if(file_exists($crouse->image)){
+                unlink($crouse->image);
+            }
+            $crouse->image=$this->getImgUrl($request);
+        }
+        $crouse->save();
+        return redirect()->route('crouses.index');
     }
 
     /**
