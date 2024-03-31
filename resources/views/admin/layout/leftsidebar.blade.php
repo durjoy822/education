@@ -125,7 +125,7 @@
                             <a href="{{route('blogs_cats.index')}}"> Blog Category</a>
                         </li>
                         <li>
-                            <a href="{{route('blogs.index')}}"> Blog </a>
+                            <a href="{{route('blogs.index')}}"><span>hello</span> Blog </a>
                         </li>
                     </ul>
                 </div>
