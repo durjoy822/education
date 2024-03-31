@@ -123,10 +123,11 @@ class TeacherController extends Controller
     public function destroy(string $id)
     {
         $teacher=Teacher::find($id);
-        $teacher=Crouse::find($id);
+        // $teacher=Crouse::find($id);
         if(file_exists($teacher->image)){
             unlink($teacher->image);
         }
+        $teacher->delete(); 
         Session::flash('success','Teacher Delete successfully');
         return back();
 

@@ -3,11 +3,13 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CrouseCategoryController;
 use App\Http\Controllers\CrouseController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\HeaderController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TestimonialController;
@@ -68,5 +70,7 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'),  'verified
     Route::resource('/abouts',AboutController::class );
     Route::resource('/events',EventController::class );
     Route::resource('/testimonials',TestimonialController::class );
+    Route::resource('/headers',HeaderController::class );
+    Route::resource('/contacts',ContactController::class );
 
 });
