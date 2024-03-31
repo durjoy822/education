@@ -14,7 +14,7 @@
 <script src="{{asset('/')}}admin/assets/vendor/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
 
 <!-- Dashboard App js -->
-<script src="{{asset('/')}}admin/assets/js/pages/demo.dashboard.js"></script>
+{{-- <script src="{{asset('/')}}admin/assets/js/pages/demo.dashboard.js"></script> --}}
 <!-- Datatables js -->
 <script src="{{asset('/')}}admin/assets/vendor/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="{{asset('/')}}admin/assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>

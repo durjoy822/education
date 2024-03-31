@@ -16,7 +16,7 @@
                     </div>
                     <hr />
                     <p class="text-muted font-14">{{ Session::get('success') }}</p>
-                    <table id="datatable-buttons" class="table table-striped dt-responsive">
+                    <table id="datatable-buttons" class="table table-striped dt-responsive responsive">
                         <tr>
                             <td>Sl NO</td>
                             <td>{{$blog->id}}</td>

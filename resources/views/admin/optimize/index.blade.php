@@ -21,16 +21,16 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="header-title">Manage Optimize table
-                   
+
                 </h4>
-                
+
                 <div class="row">
                 <div class="col-lg-6 pt-2 ">
                     <div class="card">
                      <div class="card-body">
                          <div class="m-0">
                              You can clear all site cache from here
-                                 <a href="{{route('optimize.clear')}}" class="float-right" >
+                                 <a href="{{route('case.clear')}}" class="float-right" >
                                     <button class="btn btn-outline-primary float-end" type="submit">Clear Cache</button>
                                 </a>
                          </div>
@@ -42,7 +42,7 @@
                      <div class="card-body">
                          <div class="m-0">
                             Upgrade your site from here
-                                 <a href="{{route('run.migrate')}}" class="float-right" >
+                                 <a href="" class="float-right" >
                                     <button class="btn btn-outline-primary float-end" type="submit">Upgrade </button>
                                 </a>
                          </div>
@@ -50,9 +50,9 @@
                     </div>
                  </div>
                 </div>
-            
+
               </div>
-            </div> 
+            </div>
         </div> <!-- end card -->
     </div> <!-- end col -->
 </div>
