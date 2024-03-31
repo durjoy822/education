@@ -7,6 +7,7 @@ use App\Models\Crouse;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 use App\Models\CrouseCategory;
+use Illuminate\Support\Facades\Session;
 
 class CrouseController extends Controller
 {
@@ -62,6 +63,7 @@ class CrouseController extends Controller
             $crouse->image=$this->getImgUrl($request);
         }
         $crouse->save();
+        Session::flash('success','Crouse Store successfully');
         return redirect()->route('crouses.index');
     }
 
@@ -121,6 +123,7 @@ class CrouseController extends Controller
             $crouse->image=$this->getImgUrl($request);
         }
         $crouse->save();
+        Session::flash('success','Crouse Update successfully');
         return redirect()->route('crouses.index');
     }
 
@@ -129,7 +132,13 @@ class CrouseController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $crouse=Crouse::find($id);
+        if(file_exists($crouse->image)){
+            unlink($crouse->image);
+        }
+        $crouse->delete(); 
+        Session::flash('success','Crouse Delete successfully');
+        return back();
     }
 
     public function getImgUrl($request){

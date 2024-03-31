@@ -18,6 +18,11 @@
         @livewireStyles
     </head>
     <body>
+      <style>
+      .bg-gray-100 {
+        background-color: rgb(192 196 203);
+    }
+    </style>
         <div class="font-sans text-gray-900 antialiased">
             {{ $slot }}
         </div>
