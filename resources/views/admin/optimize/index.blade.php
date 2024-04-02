@@ -30,7 +30,7 @@
                      <div class="card-body">
                          <div class="m-0">
                              You can clear all site cache from here
-                                 <a href="{{route('case.clear')}}" class="float-right" >
+                                 <a href="{{route('cache.clear')}}" class="float-right" >
                                     <button class="btn btn-outline-primary float-end" type="submit">Clear Cache</button>
                                 </a>
                          </div>
@@ -42,7 +42,7 @@
                      <div class="card-body">
                          <div class="m-0">
                             Upgrade your site from here
-                                 <a href="" class="float-right" >
+                                 <a href="{{route('migration')}}" class="float-right" >
                                     <button class="btn btn-outline-primary float-end" type="submit">Upgrade </button>
                                 </a>
                          </div>

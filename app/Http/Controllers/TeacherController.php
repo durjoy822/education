@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Crouse;
 use App\Models\CrouseCategory;
 use Carbon\Carbon;
 use App\Models\Teacher;
@@ -123,11 +122,10 @@ class TeacherController extends Controller
     public function destroy(string $id)
     {
         $teacher=Teacher::find($id);
-        // $teacher=Crouse::find($id);
         if(file_exists($teacher->image)){
             unlink($teacher->image);
         }
-        $teacher->delete(); 
+        $teacher->delete();
         Session::flash('success','Teacher Delete successfully');
         return back();
 

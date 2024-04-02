@@ -217,10 +217,10 @@
                 <div class="collapse" id="settings">
                     <ul class="side-nav-second-level">
                         <li>
-                            <a href="">Settings Create</a>
+                            <a href="{{route('settings.create')}}">Settings Create</a>
                         </li>
                         <li>
-                            <a href=""> Settings Manage </a>
+                            <a href="{{route('settings.index')}}"> Settings Manage </a>
                         </li>
                     </ul>
                 </div>
@@ -256,6 +256,22 @@
                         </li>
                         <li>
                             <a href="{{route('headers.index')}}"> Header Manage </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <!--News latter  module--->
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#newslatter" aria-expanded="false"
+                   aria-controls="newslatter" class="side-nav-link">
+                   <i class="fa-brands fa-jedi-order"></i>
+                    <span> Newslatter  </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="newslatter">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{route('newsletters.index')}}"> Newslatter Manage </a>
                         </li>
                     </ul>
                 </div>

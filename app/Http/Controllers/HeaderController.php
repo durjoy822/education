@@ -92,7 +92,7 @@ class HeaderController extends Controller
         if(file_exists($header->image)){
             unlink($header->image);
         }
-        $header->delete(); 
+        $header->delete();
         Session::flash('success','Header Delete successfully');
         return back();
     }

@@ -1,86 +1,94 @@
 @extends('admin.layout.master')
-@section('title') Settings Manage @endsection
+@section('title')
+   Settings Manage
+@endsection
 @section('body')
-<style>
-    .setting{
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-    }
-</style>
-<div class="row">
-    <div class="col-lg-12">
-        <!--create btn-->
-        @if($settings->count()<1)
-        <div class="my-2">
-            <a href="{{route('settings.create')}}" class="btn btn-success"
-                title="Edit">
-                <i class="fa-regular fa-square-plus"></i>&nbsp; Add settings
-            </a>
-        </div>
-        @endif
-        <div class="card">
-            <div class="card-body">
-                <h4 class="header-title">Manage setting table</h4>
-                <p class="text-muted font-14 text-danger">{{ Session::get('success') }}</p>
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                        <tr>
-                            <th>Id</th>
-                            <th>Dark Logo</th>
-                            <th>White Logo</th>
-                            <th>Email</th>
-                            <th>App Name</th>
-                            <th>Copyright</th>
-                            <th>Action</th>
-                        </tr>
-                        @if($settings->count())
-                        @foreach($settings as $index=>$setting)
-                        <tr>
-                            <td>{{ $index + 1}}</td>
-                            <td>
-                                <img class="setting" src="{{asset($setting->dark_logo)}}">
-                            </td>
-                            <td>
-                                <img class="setting" src="{{asset($setting->white_logo)}}">
-                            </td>
-                            <td>{{ $setting->email }}</td>
-                            <td>{{ $setting->app_name }}</td>
-                            <td>{{ $setting->copyright }}</td>
-
-                            <td>
-                                <a href="{{ route('settings.edit', $setting->id) }}" class="btn btn-success btn-sm"
-                                    title="Edit">
-                                    <i class="ri-edit-box-fill"></i>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="header-title float-start mt-2"> Settings Information</h4>
+                            @if($settings->count()<1)
+                                <a href="{{route('settings.create')}}">
+                                    <button type="button"  class="btn btn-light float-end">Add Setting</button>
                                 </a>
-                                <form action="{{ route('settings.destroy', $setting->id) }}" method="post"
-                                    class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm d-inline" title="Delete"
-                                        onclick="return confirm('Are you sure to delete this..');">
-                                        <i class="ri-chat-delete-fill"></i>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
+                            @endif
+                        </div>
+                    </div>
+                    <hr />
+                    <p class="text-muted font-14">{{ Session::get('success') }}</p>
+                    <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
+                        <thead>
+                            <tr>
+                                <th>SL NO</th>
+                                <th>Dark Logo</th>
+                                <th>Light logo</th>
+                                <th>Favicon</th>
+                                <th>website name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        @if ($settings->count() > 0)
+                            @foreach ($settings as $index => $setting)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>
+                                        @if ($setting->dark_logo)
+                                            <img src="{{asset($setting->dark_logo) }}" alt="" height="60" width="60" />
+                                        @else
+                                            <img src="{{asset('admin')}}/assets/images/not_found/not_found_img.png" alt="No Image Available" height="60" width="60" />
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($setting->white_logo)
+                                            <img src="{{ asset($setting->white_logo) }}" alt="" height="60" width="60" />
+                                        @else
+                                            <img src="{{asset('admin')}}/assets/images/not_found/not_found_img.png" alt="No Image Available" height="60" width="60" />
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($setting->favicon)
+                                            <img src="{{ asset($setting->favicon) }}" alt="" height="60" width="60" />
+                                        @else
+                                            <img src="{{asset('admin')}}/assets/images/not_found/not_found_img.png" alt="No Image Available" height="60" width="60" />
+                                        @endif
+                                    </td>
+                                    <td>{{ $setting->name }}</td>
+                                    <td>
+                                        <a href="{{route('settings.show',$setting->id)}}" class="btn btn-success btn-sm" title="Edit">
+                                            <i class="fa-solid fa-eye"></i> View
+                                        </a>
+                                        <a href="{{route('settings.edit',$setting->id)}}"
+                                        class="btn btn-success btn-sm TeacherUpdateForm"
+                                        title="Edit">
+                                        <i class="ri-edit-box-fill"></i> Edit
+                                        </a>
+                                        <form action="{{route('settings.destroy',$setting->id)}}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this teacher?');">
+                                                <i class="ri-chat-delete-fill"></i> Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
                         @else
-                        <tr>
-                            <td colspan="8" class="text-center">No data available in the table</td>
-                        </tr>
+                            <tr>
+                                <td colspan="6" class="text-danger text-center">No data found </td>
+                            </tr>
                         @endif
+                        <tbody>
+                        </tbody>
                     </table>
                 </div>
-            </div> <!-- end card-body -->
-        </div> <!-- end card -->
-    </div> <!-- end col -->
-</div>
-
-
-
-
-
+            </div>
+        </div>
+    </div>
 
 @endsection
+
+
 

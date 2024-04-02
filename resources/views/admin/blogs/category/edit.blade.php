@@ -30,7 +30,7 @@
                         </div>
                         <div class="justify-content-end row">
                             <div class="col-md-9">
-                                <button type="submit" class="btn btn-info addTeacher">Create New Category</button>
+                                <button type="submit" class="btn btn-info addTeacher">Update Category</button>
                             </div>
                         </div>
                     </form>
