@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="widget widget-company">
-                    <a href='index.html'><img src="{{asset('web')}}/assets/images/icon/logo.png" alt="image"></a>
+                    <a href='index.html'><img src="{{ asset('web') }}/assets/images/icon/logo.png" alt="image"></a>
                     <div class="address">
                         <h6>OFFICE ADDRESS</h6>
                         <p>London Oxford Street, 012 United Kingdom.</p>
@@ -39,18 +39,25 @@
             <div class="col-md-5">
                 <div class="widget widget-opening">
                     <h4 class="fwidget-title mb-5 pb-3 primary-color">Working Day & time</h4>
-                    <p>Architecto beatae vitae dicta sunt ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit</p>
+                    {{-- <p>Architecto beatae vitae dicta sunt ipsam voluptatem quia voluptas sit aspernatur aut odit aut
+                        fugit</p> --}}
                     <ul>
-                        <li><span>Mon - Tus :</span>6.00 am - 10.00 pm</li>
-                        <li><span>Wed - Tur :</span>8.00 am - 6.00 pm</li>
-                        <li><span>Friday :</span>3.00 pm - 8.00 pm</li>
-                        <li><span>Sunday :</span>Closed</li>
+                        <li><span>Saturday:</span>6.00 am - 10.00 pm</li>
+                        <li><span>Sunday:</span>8.00 am - 6.00 pm</li>
+                        <li><span>Monday :</span>3.00 pm - 8.00 pm</li>
+                        <li><span>Tuesday :</span>10.00 am - 6.00 pm</li>
+                        <li><span>Wednesday :</span>10.00 am - 6.00 pm</li>
+                        <li><span>Thursday :</span>8.00 am - 6.00 pm</li>
+                        <li><span>Friday :</span> <span class="text-danger">Closed</span></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>Copyright &copy; 2018 <span><a target="_blank" href="https://themeforest.net/user/pixelthemez/portfolio" class="primary-color">Edification</a> </span> - All Rights Reserved. Made by <span><a class="primary-color" href="https://furioustheme.com/" target="_blank">Furioustheme</a></span></p>
+            <p>Copyright &copy; 2018 <span><a target="_blank" href="https://themeforest.net/user/pixelthemez/portfolio"
+                        class="primary-color">Edification</a> </span> - All Rights Reserved. Made by <span><a
+                        class="primary-color" href="https://furioustheme.com/" target="_blank">Furioustheme</a></span>
+            </p>
         </div>
     </div>
 </div>

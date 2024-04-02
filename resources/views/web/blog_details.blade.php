@@ -20,50 +20,35 @@ Blog Details
             <div class="col-lg-8 col-md-8">
                 <div class="course-details">
                     <div class="cs-thumb mb-5">
-                        <img src="{{asset('web')}}/assets/images/blog/blog-details.jpg" alt="image">
+                        <img src="{{asset($blog->image)}}" alt="image">
                     </div>
                     <div class="cs-content">
                         <div class="blog-top-meta">
                             <ul>
-                                <li><i class="fa fa-user"></i>By <span>Sajib</span></li>
-                                <li><i class="fa fa-tag"></i> CSE , GMAT</li>
+                                <li><i class="fa fa-user"></i>By <span>{{$blog->created_by}}</span></li>
+                                <li><i class="fa fa-tag"></i> {{$blog->BlogCategory->name}}</li>
                                 <li><i class="fa fa-comment-o"></i>(3) <span>Comments</span></li>
                             </ul>
                         </div>
-                        <h3 class="mb-4"><a href="#">Excepteur sint occaecat cupidatat non proident </a></h3>
+                        <h3 class="mb-4"><a>{{$blog->title}}</a></h3>
 
-                        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore voluptatem.</p>
-                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
+                        <p> {!!$blog->long_description!!}    </p>
+
                         <div class="cs-post-share">
                             <div class="row align-items-center">
                                 <div class="col-lg-7 col-md-12 col-sm-4">
                                     <div class="cs-share-right">
                                         <ul class="cs-social">
-                                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                            <li><a href="{{$blog->facebook}}"><i class="fa fa-facebook"></i></a></li>
+                                            <li><a href="{{$blog->twitter}}"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="{{$blog->google_plus}}"><i class="fa fa-google-plus"></i></a></li>
+                                            <li><a href="{{$blog->instagram}}"><i class="fa fa-instagram"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- post autohr info -->
-                        <div class="post-author-info">
-                            <div class="thumb">
-                                <img src="{{asset('web')}}/assets/images/author/cs-post-author1.jpg" alt="image">
-                            </div>
-                            <div class="fix">
-                                <h4>Rebeka</h4>
-                                <p>Aenean id ullamcorper libero. Vestibulum imperdiet nibh vel magna lacinia ultrices. Sed id interdum urna. onsectetur adipiscing elit. faucibus risus, a euismod lorem hendrerit ac nisi</p>
-                                <ul class="social">
-                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <!-- comments area end -->
@@ -166,11 +151,10 @@ Blog Details
                     <div class="widget widget-category">
                         <h4 class="widget-title">Categories</h4>
                         <ul class="list">
-                            <li><a href="#">GMAT</a></li>
-                            <li><a href="#">BUSINESS</a></li>
-                            <li><a href="#">CSE</a></li>
-                            <li><a href="#">PYTHON</a></li>
-                            <li><a href="#">IELTS</a></li>
+                            @foreach ($blogCategories as  $blogCategory)
+                            <li><a href="#">{{$blogCategory->name}}</a></li>
+                            @endforeach
+
                         </ul>
                     </div>
                     <!-- widget offer end -->
@@ -178,41 +162,16 @@ Blog Details
                     <div class="widget widget-course">
                         <h4 class="widget-title">Popular Posts</h4>
                         <div class="course-list">
+                            @foreach ($blogs as $blog)
                             <div class="w-cs-single">
-                                <img src="{{asset('web')}}/assets/images/course/cs-small-thumb1.jpg" alt="image">
+                                <img src="{{asset($blog->image)}}" alt="image">
                                 <div class="fix">
-                                     <p><a href="#">Ui / Ux Design</a></p>
-                                    <span><i class="fa fa-clock-o"></i> AUGUST 6, 2017</span>
+                                     <p><a href="{{route('blog.details',$blog->id)}}">{{$blog->title}}</a></p>
+                                    <span><i class="fa fa-clock-o"></i> {{ date('F j, Y', strtotime($blog->creating_date)) }}</span>
                                 </div>
                             </div>
-                            <div class="w-cs-single">
-                                <img src="{{asset('web')}}/assets/images/course/cs-small-thumb2.jpg" alt="image">
-                                <div class="fix">
-                                     <p><a href="#">Learn Java</a></p>
-                                    <span><i class="fa fa-clock-o"></i> AUGUST 6, 2017</span>
-                                </div>
-                            </div>
-                            <div class="w-cs-single">
-                                <img src="{{asset('web')}}/assets/images/course/cs-small-thumb3.jpg" alt="image">
-                                <div class="fix">
-                                     <p><a href="#">C++</a></p>
-                                    <span><i class="fa fa-clock-o"></i> AUGUST 6, 2017</span>
-                                </div>
-                            </div>
-                            <div class="w-cs-single">
-                                <img src="{{asset('web')}}/assets/images/course/cs-small-thumb4.jpg" alt="image">
-                                <div class="fix">
-                                     <p><a href="#">Seo</a></p>
-                                    <span><i class="fa fa-clock-o"></i> AUGUST 6, 2017</span>
-                                </div>
-                            </div>
-                            <div class="w-cs-single">
-                                <img src="{{asset('web')}}/assets/images/course/cs-small-thumb5.jpg" alt="image">
-                                <div class="fix">
-                                     <p><a href="#">Python</a></p>
-                                    <span><i class="fa fa-clock-o"></i> AUGUST 6, 2017</span>
-                                </div>
-                            </div>
+                            @endforeach
+
                         </div>
                     </div>
                     <!-- widget course end -->

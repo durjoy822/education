@@ -177,55 +177,20 @@ Home
         </div>
                    <div class="row">
             <div class="blog-carousel owl-carousel card-deck">
-              <div class="card mb-5">
-                <img class="card-img-top" src="{{asset('web')}}/assets/images/blog/blog-thumbnail1.jpg" alt="image">
-                <div class="card-body p-25">
-                    <ul class="list-inline primary-color mb-3">
-                        <li><i class="fa fa-clock-o"></i> AUGUST 6, 2017</li>
-                        <li><i class="fa fa-comments"></i> 3 Comments</li>
-                    </ul>
-                  <h4 class="card-title mb-4"><a href='blog-details.html'>The Death Of architechture</a></h4>
-                  <p class="card-text">We’re a philosophical bunch here at School site and we have thought long and hard about.</p>
-                  <a class='btn btn-primary btn-round btn-sm' href='blog-details.html'> Read More </a>
-                </div>
-              </div><!-- card -->
-              <div class="card mb-5">
-                <img class="card-img-top" src="{{asset('web')}}/assets/images/blog/blog-thumbnail2.jpg" alt="image">
-                <div class="card-body p-25">
-                    <ul class="list-inline primary-color mb-3">
-                        <li><i class="fa fa-clock-o"></i> AUGUST 6, 2017</li>
-                        <li><i class="fa fa-comments"></i> 3 Comments</li>
-                    </ul>
-                  <h4 class="card-title mb-4"><a href='blog-details.html'>Aenean id ullamcorper</a></h4>
-                  <p class="card-text">We’re a philosophical bunch here at School site and we have thought long and hard about.</p>
-                  <a class='btn btn-primary btn-round btn-sm' href='blog-details.html'> Read More </a>
-                </div>
-              </div><!-- card -->
-
-              <div class="card mb-5">
-                <img class="card-img-top" src="{{asset('web')}}/assets/images/blog/blog-thumbnail3.jpg" alt="image">
-                <div class="card-body p-25">
-                    <ul class="list-inline primary-color mb-3">
-                        <li><i class="fa fa-clock-o"></i> AUGUST 6, 2017</li>
-                        <li><i class="fa fa-comments"></i> 3 Comments</li>
-                    </ul>
-                  <h4 class="card-title mb-4"><a href='blog-details.html'>The Death Of architechture</a></h4>
-                  <p class="card-text">We’re a philosophical bunch here at School site and we have thought long and hard about.</p>
-                  <a class='btn btn-primary btn-round btn-sm' href='blog-details.html'> Read More </a>
-                </div>
-              </div><!-- card -->
-              <div class="card mb-5">
-                <img class="card-img-top" src="{{asset('web')}}/assets/images/blog/blog-thumbnail1.jpg" alt="image">
-                <div class="card-body p-25">
-                    <ul class="list-inline primary-color mb-3">
-                        <li><i class="fa fa-clock-o"></i> AUGUST 6, 2017</li>
-                        <li><i class="fa fa-comments"></i> 3 Comments</li>
-                    </ul>
-                  <h4 class="card-title mb-4"><a href='blog-details.html'>The Death Of architechture</a></h4>
-                  <p class="card-text">We’re a philosophical bunch here at School site and we have thought long and hard about.</p>
-                  <a class='btn btn-primary btn-round btn-sm' href='blog-details.html'> Read More </a>
-                </div>
-              </div><!-- card -->
+                @foreach ($blogs as $blog )
+                <div class="card mb-5">
+                  <img class="card-img-top" src="{{asset($blog->image)}}" alt="image">
+                  <div class="card-body p-25">
+                      <ul class="list-inline primary-color mb-3">
+                          <li><i class="fa fa-clock-o"></i> {{ date('F j, Y', strtotime($blog->creating_date)) }}</li>
+                          <li><i class="fa fa-comments"></i> 3 Comments</li>
+                      </ul>
+                    <h4 class="card-title mb-4"><a href='blog-details.html'>{{substr($blog->title,0,50)}}...</a></h4>
+                    <p class="card-text">{!!substr($blog->short_description,0,200)!!}...</p>
+                    <a class='btn btn-primary btn-round btn-sm' href='{{route('blog.details',$blog->id)}}'> Read More </a>
+                  </div>
+                </div><!-- card -->
+                @endforeach
             </div><!-- blog-carousel -->
         </div><!-- blog-carousel -->
     </div>

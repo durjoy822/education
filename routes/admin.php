@@ -10,10 +10,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\HeaderController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\OptimizeController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserController ;
 
 /*
@@ -60,7 +62,8 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'),  'verified
     Route::get('/user/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
 
     Route::get('/optimize', [OptimizeController::class, 'index'])->name('optimize.index');
-    Route::get('/case/clear', [OptimizeController::class, 'caseClear'])->name('case.clear');
+    Route::get('/cache/clear', [OptimizeController::class, 'cacheClear'])->name('cache.clear');
+    Route::get('/migration', [OptimizeController::class, 'migration'])->name('migration');
 
     Route::resource('/teachers',TeacherController::class);
     Route::resource('/crouseCategory',CrouseCategoryController::class);
@@ -72,5 +75,7 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'),  'verified
     Route::resource('/testimonials',TestimonialController::class );
     Route::resource('/headers',HeaderController::class );
     Route::resource('/contacts',ContactController::class );
+    Route::resource('/settings',SettingController::class );
+    Route::resource('/newsletters',NewsletterController::class );
 
 });

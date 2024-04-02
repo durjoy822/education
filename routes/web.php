@@ -24,5 +24,5 @@ Route::get('/teacher/details', [HomeController::class, 'teachersDetails'])->name
 Route::get('/crouse', [HomeController::class, 'crouse'])->name('crouse');
 Route::get('/crouse/details', [HomeController::class, 'crouseDetails'])->name('crouse.details');
 Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
-Route::get('/blog/details', [HomeController::class, 'blogDetails'])->name('blog.details');
+Route::get('/blog/details/{id}', [HomeController::class, 'blogDetails'])->name('blog.details');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');

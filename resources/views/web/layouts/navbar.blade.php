@@ -20,11 +20,11 @@
                                 </ul>
                             </li>
                             <li><a href='{{route('teachers')}}'>Teachers</a></li>
-                            <li><a href="javascript:void(0);">blog</a>
-                                <ul class="submenu">
+                            <li><a href="{{route('blog')}}">blog</a>
+                                {{-- <ul class="submenu">
                                     <li><a href='{{route('blog')}}'>blog</a></li>
                                     <li><a href='{{route('blog.details')}}'>blog details</a></li>
-                                </ul>
+                                </ul> --}}
                             </li>
                             <li><a href='{{route('contact')}}'>Contact</a></li>
                         </ul>

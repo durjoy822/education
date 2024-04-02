@@ -9,7 +9,7 @@ class Teacher extends Model
 {
     use HasFactory;
 
-    public function Category()
+    public function cat()
     {
         return $this->belongsTo(CrouseCategory::class);
     }
