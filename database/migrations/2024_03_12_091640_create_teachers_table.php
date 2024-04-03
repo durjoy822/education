@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('image')->nullable();
-            $table->integer('department')->nullable()->comment('department=category_id');
+            $table->string('department'); 
             $table->longText('long_description')->nullable();
             $table->longText('short_description')->nullable();
             $table->string('facebook')->nullable();

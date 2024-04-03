@@ -3,6 +3,36 @@
     Crouse Details
 @endsection
 @section('body')
+    <style>
+        .crouse_img {
+            height: 450px;
+            width: 100%;
+        }
+
+        .latest_crouse_img {
+            height: 100px;
+            width: 100%;
+        }
+        .modal-dialog{
+            max-width: 900px;
+        }
+
+        .modal-body select {
+        border: 1px solid #efefef;
+        margin-bottom: 20px;
+        padding: 10px 15px;
+        width: 100%;
+
+        }
+        .modal-body textarea {
+        border: 1px solid #efefef;
+        margin-bottom: 20px;
+        padding: 10px 15px;
+        width: 100%;
+        }
+
+
+    </style>
     <!-- crumbs area start -->
     <div class="crumbs-area">
         <div class="container">
@@ -20,22 +50,28 @@
                 <div class="col-lg-8 col-md-8">
                     <div class="course-details">
                         <div class="cs-thumb mb-5">
-                            <img src="{{ asset('web') }}/assets/images/course/course-details.jpg" alt="image">
-                            <span class="cs-price">$150</span>
+                            @if ($crouseDetail->image)
+                                <img class="crouse_img" src="{{ asset($crouseDetail->image) }}" alt="image">
+                            @else
+                                <img class="crouse_img"
+                                    src="{{ asset('web') }}/assets/images/not_found/teacher_not_found.png"
+                                    alt="No Image Available" />
+                            @endif
+                            <span class="cs-price">{{ $crouseDetail->price }} Tk</span>
                             <div class="csd-hv-info has-color align-items-center">
                                 <div class="course-dt-info">
                                     <ul class="course-meta-details list-inline  w-100">
                                         <li>
                                             <p>Course</p>
-                                            <span>3 Year</span>
+                                            <span>{{ $crouseDetail->crouse_validation }}</span>
                                         </li>
                                         <li>
                                             <p>Class Size</p>
-                                            <span>18</span>
+                                            <span>{{ $crouseDetail->class_size }}</span>
                                         </li>
                                         <li>
                                             <p>Duration</p>
-                                            <span>1 hour</span>
+                                            <span>{{ $crouseDetail->class_duration }}</span>
                                         </li>
 
                                     </ul>
@@ -43,7 +79,7 @@
                                 <ul class="course-meta-stats text-center">
                                     <li>
                                         <p class="m-0">Total Seats </p>
-                                        <div>50/<span class="text-danger">30</span></div>
+                                        <div>{{ $crouseDetail->total_seat }}/<span class="text-danger">30</span></div>
                                     </li>
 
                                 </ul>
@@ -67,15 +103,15 @@
                                         </ul>
                                     </div>
                                     <div class="col-md-7 col-6 text-end">
-                                        <div class="float-right"><button class="btn btn-sm btn-warning ">Apply now</button></div>
+                                        <div class="float-right">
+                                            <button class="btn btn-sm btn-warning"data-toggle="modal"
+                                                data-target="#apply_now">Apply now</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <h3 class="mb-4 mt-2"><a href="#">Excepteur sint occaecat cupidatat non proident </a></h3>
-                            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia
-                                consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam
-                                est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non
-                                numquam eius modi tempora incidunt ut labore et dolore voluptatem.</p>
+                            <h3 class="mb-4 mt-2"><a href="#">{{ $crouseDetail->crouse_title }}</a></h3>
+                            <p>{!! $crouseDetail->long_description !!}</p>
 
                         </div>
                     </div>
@@ -180,17 +216,26 @@
                             <div class="instructor">
                                 <div class="post-author-info">
                                     <div class="thumb">
-                                        <img src="{{ asset('web') }}/assets/images/author/cs-post-author1.jpg"
-                                            alt="image">
+                                        @if ($crouseDetail->Teacher->image)
+                                            <img class="crouse_img" src="{{ asset($crouseDetail->Teacher->image) }}"
+                                                alt="image">
+                                        @else
+                                            <img class="crouse_img"
+                                                src="{{ asset('web') }}/assets/images/not_found/teacher_not_found.png"
+                                                alt="No Image Available" />
+                                        @endif
                                     </div>
-                                    <h5>Rebeka</h5>
-                                    <p>Aenean id ullamcorper libero. Vestibulum imperdiet nibh vel magna lacinia ultrices.
-                                    </p>
+                                    <h5>{{ $crouseDetail->Teacher->name }}</h5>
+                                    <p>{!! $crouseDetail->Teacher->short_description !!}</p>
                                     <ul class="social">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                        <li><a href="{{ $crouseDetail->Teacher->facebook }}"><i
+                                                    class="fa fa-facebook"></i></a></li>
+                                        <li><a href="{{ $crouseDetail->Teacher->twitter }}"><i
+                                                    class="fa fa-twitter"></i></a></li>
+                                        <li><a href="{{ $crouseDetail->Teacher->instagram }}"><i
+                                                    class="fa fa-instagram"></i></a></li>
+                                        <li><a href="{{ $crouseDetail->Teacher->github }}"><i
+                                                    class="fa fa-github"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -201,46 +246,26 @@
                         <div class="widget widget-course">
                             <h4 class="widget-title">Latest Courses</h4>
                             <div class="course-list">
-                                <div class="w-cs-single">
-                                    <img src="{{ asset('web') }}/assets/images/course/cs-small-thumb1.jpg"
-                                        alt="image">
-                                    <div class="fix">
-                                        <p><a href="#">Ui / Ux Design</a></p>
-                                        <span><i class="fa fa-clock-o"></i> AUGUST 6, 2017</span>
+                                @foreach ($latestCrouses as $latestCrouse)
+                                    <div class="w-cs-single">
+                                        @if ($latestCrouse->image)
+                                            <img class="latest_crouse_img" src="{{ asset($latestCrouse->image) }}"
+                                                alt="image">
+                                        @else
+                                            <img class="latest_crouse_img"
+                                                src="{{ asset('web') }}/assets/images/not_found/teacher_not_found.png"
+                                                alt="No Image Available" />
+                                        @endif
+                                        <div class="fix">
+                                            <p><a
+                                                    href="{{ route('crouse.details', $latestCrouse->id) }}">{{ $latestCrouse->crouse_title }}</a>
+                                            </p>
+                                            <span><i
+                                                    class="fa fa-clock-o"></i>{{ date('F j, Y', strtotime($latestCrouse->created_at)) }}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="w-cs-single">
-                                    <img src="{{ asset('web') }}/assets/images/course/cs-small-thumb2.jpg"
-                                        alt="image">
-                                    <div class="fix">
-                                        <p><a href="#">Learn Java</a></p>
-                                        <span><i class="fa fa-clock-o"></i> AUGUST 6, 2017</span>
-                                    </div>
-                                </div>
-                                <div class="w-cs-single">
-                                    <img src="{{ asset('web') }}/assets/images/course/cs-small-thumb3.jpg"
-                                        alt="image">
-                                    <div class="fix">
-                                        <p><a href="#">C++</a></p>
-                                        <span><i class="fa fa-clock-o"></i> AUGUST 6, 2017</span>
-                                    </div>
-                                </div>
-                                <div class="w-cs-single">
-                                    <img src="{{ asset('web') }}/assets/images/course/cs-small-thumb4.jpg"
-                                        alt="image">
-                                    <div class="fix">
-                                        <p><a href="#">Seo</a></p>
-                                        <span><i class="fa fa-clock-o"></i> AUGUST 6, 2017</span>
-                                    </div>
-                                </div>
-                                <div class="w-cs-single">
-                                    <img src="{{ asset('web') }}/assets/images/course/cs-small-thumb5.jpg"
-                                        alt="image">
-                                    <div class="fix">
-                                        <p><a href="#">Python</a></p>
-                                        <span><i class="fa fa-clock-o"></i> AUGUST 6, 2017</span>
-                                    </div>
-                                </div>
+                                @endforeach
+
                             </div>
                         </div>
                         <!-- widget course end -->
@@ -264,7 +289,6 @@
     </div>
     <!-- course area end -->
 
-
     <!-- cta area start -->
     <div class="cta-area secondary-bg has-color ptb--50">
         <div class="container">
@@ -284,4 +308,103 @@
         </div>
     </div>
     <!-- cta area end -->
+
+
+
+
+    <!-------------Apply now modal start ------->
+    <!-- Modal -->
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="apply_now" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content p-5">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Please Fillup This Form For Apply</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form class="signup-form text-center">
+                  <div class="row">
+                      <div class="col-lg-6 col-md-6">
+                          <input type="text" name="name" id="name" placeholder="Full  Name">
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                        <input type="email" placeholder="Email">
+                    </div>
+                      <div class="col-lg-6 col-md-6">
+                          <input type="date" name="date" id="date" >
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                        <input type="text" name="phone" id="phone" placeholder="Phone">
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <select   name="work" id="work">
+                          <option disabled selected>  Work </option>
+                          <option value="students"> Students </option>
+                          <option value="job_holder"> Job Holder </option>
+                        </select>
+                    </div>
+                      <div class="col-lg-6 col-md-6">
+                          <input type="text" name="collage" id="collage" placeholder="Collage">
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                          <input type="text" name="vercity" id="vercity" placeholder="Univercity">
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                        <input type="text" name="zilla" id="zilla" placeholder="Zilla ">
+                    </div>
+                      <div class="col-lg-4 col-md-4">
+                          <select   name="country" id="country">
+                            <option disabled selected>  Country </option>
+                            <option value="Bangladesh"> Bangladesh </option>
+                          </select>
+                      </div>
+                      <div class="col-lg-3 col-md-3">
+                          <select   name="gender" id="gender">
+                            <option disabled selected> Gender</option>
+                            <option value="male"> Male </option>
+                            <option value="female"> Female </option>
+                          </select>
+                      </div>
+                      <div class="col-lg-5 col-md-5">
+                        <select   name="crouse" id="crouse">
+                          <option disabled selected>  Select Crouse </option>
+                          <option value="1"> Web Development with java script </option>
+                          <option value="2">Graphics Design with Adobi Illastator  </option>
+                        </select>
+                    </div>
+                      <div class="col-lg-12 col-md-12">
+                        <textarea name="address" placeholder="Enter Your Address"></textarea>
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <select   name="payment" id="payment">
+                          <option disabled selected>  Payment </option>
+                          <option value="hand_cash"> Hand Cash  </option>
+                          <option value="online">Online Payment</option>
+                        </select>
+                  </div>
+                    <div class="col-lg-6 col-md-6">
+                        <select   name="payment_method" id="payment_method">
+                          <option disabled selected>  Payment method</option>
+                          <option value="bkash"> Bkash  </option>
+                          <option value="nagad">Nagad</option>
+                          <option value="dbbl">Duch Bangla Bank</option>
+                        </select>
+                  </div>
+                    <div class="col-lg-12 col-md-12">
+                        <input type="text" name="transaction_number" id="transection" placeholder="Transaction Number">
+                  </div>
+
+                  <button class="btn btn-primary form-control" type="submit">Apply </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-------------Apply now modal end ------->
 @endsection

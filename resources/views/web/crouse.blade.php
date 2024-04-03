@@ -3,6 +3,12 @@
 Crouse
 @endsection
 @section('body')
+<style>
+    .crouse_img{
+        height: 250px;
+        width: 100%;
+    }
+</style>
  <!-- crumbs area start -->
  <div class="crumbs-area">
     <div class="container">
@@ -16,231 +22,64 @@ Crouse
 <div class="course-area  pt--120 pb--70">
     <div class="container">
         <div class="row">
+            @foreach ($crouses as $crouse)
             <!-- course single start -->
             <div class="col-lg-4 col-md-6">
                 <div class="card mb-5">
                     <div class="course-thumb">
-                        <img src="{{asset('web')}}/assets/images/course/cs-img1.jpg" alt="image">
-                        <span class="cs-price primary-bg">$150</span>
+                        @if($crouse->image)
+                        <img class="crouse_img" src="{{asset($crouse->image)}}" alt="image">
+                        @else
+                        <img  class="crouse_img" src="{{asset('web')}}/assets/images/not_found/teacher_not_found.png" alt="No Image Available" />
+                        @endif
+                        <span class="cs-price primary-bg">{{$crouse->price}} Tk</span>
                     </div>
                     <div class="card-body  p-25">
                         <div class="course-meta-title mb-4">
                             <div class="course-meta-text">
-                                <h4><a href='course-details.html'>Application Design Course</a></h4>
+                                <h4><a href='{{route('crouse.details',$crouse->id)}}'>{{$crouse->crouse_title}}</a></h4>
                                 <ul class="course-meta-stats">
                                     <li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i></li>
-                                    <li>36 <i class="fa fa-comment"></i></li>
-                                    <li>85 <i class="fa fa-heart"></i></li>
+                                    <li>36 <i class="fa fa-comment"></i>Comments</li>
                                 </ul>
                             </div>
-                            <a href='course-details.html'><img class="course-meta-thumbnail rounded-circle" src="{{asset('web')}}/assets/images/author/auth1.jpg" alt="image"> </a>
+                            <a href='course-details.html'>
+                                @if($crouse->Teacher->image)
+                                <img class="course-meta-thumbnail rounded-circle" src="{{asset($crouse->Teacher->image)}}" alt="image">
+                                @else
+                                <img class="course-meta-thumbnail rounded-circle" src="{{asset('web')}}/assets/images/not_found/teacher_not_found.png" alt="image">
+                                @endif
+                             </a>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sciunt. Neque quisquam est, qui dolorem ipsum tatem.</p>
+                        <p>{!!substr($crouse->short_description,0,150)!!}..</p>
                         <ul class="course-meta-details list-inline  w-100">
                             <li>
                              <p>Course</p>
-                             <span>3 Year</span>
+                             <span>{{$crouse->crouse_validation}}</span>
                             </li>
                             <li>
                              <p>Class Size</p>
-                              <span>18</span>
+                              <span>{{$crouse->class_size}}</span>
                             </li>
                             <li>
                              <p>Duration</p>
-                              <span>1 hour</span>
+                              <span>{{$crouse->class_duration}}</span>
                             </li>
                         </ul>
+                        <div class="course-meta-details d-flex list-inline  w-100 text-center">
+                            <button class="btn btn-sm  btn-info mt-1 mb-1">Wishlist </button> &nbsp;
+                            <button class="btn btn-sm btn-warning">Apply Now </button>
+                        </div>
                   </div><!-- card-body -->
                 </div><!-- card -->
             </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="card mb-5">
-                    <div class="course-thumb">
-                        <img src="{{asset('web')}}/assets/images/course/cs-img2.jpg" alt="image">
-                        <span class="cs-price primary-bg">$150</span>
-                    </div>
-                    <div class="card-body  p-25">
-                        <div class="course-meta-title mb-4">
-                            <div class="course-meta-text">
-                                <h4><a href='course-details.html'>Data Structure & Algorithm</a></h4>
-                                <ul class="course-meta-stats">
-                                    <li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i></li>
-                                    <li>36 <i class="fa fa-comment"></i></li>
-                                    <li>85 <i class="fa fa-heart"></i></li>
-                                </ul>
-                            </div>
-                            <a href='course-details.html'><img class="course-meta-thumbnail rounded-circle" src="{{asset('web')}}/assets/images/author/auth1.jpg" alt="image"> </a>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sciunt. Neque quisquam est, qui dolorem ipsum tatem.</p>
-                        <ul class="course-meta-details list-inline  w-100">
-                            <li>
-                             <p>Course</p>
-                             <span>3 Year</span>
-                            </li>
-                            <li>
-                             <p>Class Size</p>
-                              <span>18</span>
-                            </li>
-                            <li>
-                             <p>Duration</p>
-                              <span>1 hour</span>
-                            </li>
-                        </ul>
-                  </div><!-- card-body -->
-                </div><!-- card -->
-            </div><!-- col-lg-4 -->
-
-            <div class="col-lg-4 col-md-6">
-                <div class="card mb-5">
-                    <div class="course-thumb">
-                        <img src="{{asset('web')}}/assets/images/course/cs-img3.jpg" alt="image">
-                        <span class="cs-price primary-bg">$150</span>
-                    </div>
-                    <div class="card-body  p-25">
-                        <div class="course-meta-title mb-4">
-                            <div class="course-meta-text">
-                                <h4><a href='course-details.html'>Android App Development</a></h4>
-                                <ul class="course-meta-stats">
-                                    <li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i></li>
-                                    <li>36 <i class="fa fa-comment"></i></li>
-                                    <li>85 <i class="fa fa-heart"></i></li>
-                                </ul>
-                            </div>
-                            <a href='course-details.html'><img class="course-meta-thumbnail rounded-circle" src="{{asset('web')}}/assets/images/author/auth1.jpg" alt="image"> </a>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sciunt. Neque quisquam est, qui dolorem ipsum tatem.</p>
-                        <ul class="course-meta-details list-inline  w-100">
-                            <li>
-                             <p>Course</p>
-                             <span>3 Year</span>
-                            </li>
-                            <li>
-                             <p>Class Size</p>
-                              <span>18</span>
-                            </li>
-                            <li>
-                             <p>Duration</p>
-                              <span>1 hour</span>
-                            </li>
-                        </ul>
-                  </div><!-- card-body -->
-                </div><!-- card -->
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="card mb-5">
-                    <div class="course-thumb">
-                        <img src="{{asset('web')}}/assets/images/course/cs-img4.jpg" alt="image">
-                        <span class="cs-price primary-bg">$150</span>
-                    </div>
-                    <div class="card-body  p-25">
-                        <div class="course-meta-title mb-4">
-                            <div class="course-meta-text">
-                                <h4><a href='course-details.html'>Application Design Course</a></h4>
-                                <ul class="course-meta-stats">
-                                    <li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i></li>
-                                    <li>36 <i class="fa fa-comment"></i></li>
-                                    <li>85 <i class="fa fa-heart"></i></li>
-                                </ul>
-                            </div>
-                            <a href='course-details.html'><img class="course-meta-thumbnail rounded-circle" src="{{asset('web')}}/assets/images/author/auth1.jpg" alt="image"> </a>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sciunt. Neque quisquam est, qui dolorem ipsum tatem.</p>
-                        <ul class="course-meta-details list-inline  w-100">
-                            <li>
-                             <p>Course</p>
-                             <span>3 Year</span>
-                            </li>
-                            <li>
-                             <p>Class Size</p>
-                              <span>18</span>
-                            </li>
-                            <li>
-                             <p>Duration</p>
-                              <span>1 hour</span>
-                            </li>
-                        </ul>
-                  </div><!-- card-body -->
-                </div><!-- card -->
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="card mb-5">
-                    <div class="course-thumb">
-                        <img src="{{asset('web')}}/assets/images/course/cs-img5.jpg" alt="image">
-                        <span class="cs-price primary-bg">$150</span>
-                    </div>
-                    <div class="card-body  p-25">
-                        <div class="course-meta-title mb-4">
-                            <div class="course-meta-text">
-                                <h4><a href='course-details.html'>Application Design Course</a></h4>
-                                <ul class="course-meta-stats">
-                                    <li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i></li>
-                                    <li>36 <i class="fa fa-comment"></i></li>
-                                    <li>85 <i class="fa fa-heart"></i></li>
-                                </ul>
-                            </div>
-                            <a href='course-details.html'><img class="course-meta-thumbnail rounded-circle" src="{{asset('web')}}/assets/images/author/auth1.jpg" alt="image"> </a>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sciunt. Neque quisquam est, qui dolorem ipsum tatem.</p>
-                        <ul class="course-meta-details list-inline  w-100">
-                            <li>
-                             <p>Course</p>
-                             <span>3 Year</span>
-                            </li>
-                            <li>
-                             <p>Class Size</p>
-                              <span>18</span>
-                            </li>
-                            <li>
-                             <p>Duration</p>
-                              <span>1 hour</span>
-                            </li>
-                        </ul>
-                  </div><!-- card-body -->
-                </div><!-- card -->
-            </div>
-            <!-- course single end -->
-            <!-- course single start -->
-            <div class="col-lg-4 col-md-6">
-                <div class="card mb-5">
-                    <div class="course-thumb">
-                        <img src="{{asset('web')}}/assets/images/course/cs-img6.jpg" alt="image">
-                        <span class="cs-price primary-bg">$150</span>
-                    </div>
-                    <div class="card-body  p-25">
-                        <div class="course-meta-title mb-4">
-                            <div class="course-meta-text">
-                                <h4><a href='course-details.html'>Application Design Course</a></h4>
-                                <ul class="course-meta-stats">
-                                    <li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i></li>
-                                    <li>36 <i class="fa fa-comment"></i></li>
-                                    <li>85 <i class="fa fa-heart"></i></li>
-                                </ul>
-                            </div>
-                            <a href='course-details.html'><img class="course-meta-thumbnail rounded-circle" src="{{asset('web')}}/assets/images/author/auth1.jpg" alt="image"> </a>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sciunt. Neque quisquam est, qui dolorem ipsum tatem.</p>
-                        <ul class="course-meta-details list-inline  w-100">
-                            <li>
-                             <p>Course</p>
-                             <span>3 Year</span>
-                            </li>
-                            <li>
-                             <p>Class Size</p>
-                              <span>18</span>
-                            </li>
-                            <li>
-                             <p>Duration</p>
-                              <span>1 hour</span>
-                            </li>
-                        </ul>
-                  </div><!-- card-body -->
-                </div><!-- card -->
-            </div>
-            <!-- course single end -->
+            @endforeach
         </div>
+        <!---pagination-->
+    <div class="d-felx justify-content-center">
+        {{ $crouses->links('web.layouts.pagination') }}
+    </div>
+    <!--end pagination-->
     </div>
 </div>
 <!-- course area end -->
@@ -263,5 +102,5 @@ Crouse
         </div>
     </div>
 </div>
-<!-- cta area end --> 
+<!-- cta area end -->
 @endsection

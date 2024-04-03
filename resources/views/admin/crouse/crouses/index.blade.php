@@ -21,6 +21,7 @@
                             <tr>
                                 <th>SL NO</th>
                                 <th>Image</th>
+                                <th>Crouse Title</th>
                                 <th>Category</th>
                                 <th>teacher</th>
                                 <th>Status</th>
@@ -40,6 +41,7 @@
                                     @endif
                                 </td>
 
+                                <td>{{ substr($crouse->crouse_title,0,35) }} </td>
                                 <td>{{ $crouse->Category->name }} </td>
                                 <td>{{ $crouse->Teacher->name }}</td>
                                 <td>{{ $crouse->status == 1 ? 'Published' : 'Unpublished' }}</td>
