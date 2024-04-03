@@ -13,11 +13,11 @@
                             <li class="active"><a href="{{route('home')}}">Home</a>
                             </li>
                             <li><a href='{{route('about')}}'>About</a></li>
-                            <li><a href="javascript:void(0);">Courses</a>
-                                <ul class="submenu">
+                            <li><a href="{{route('crouse')}}">Courses</a>
+                                {{-- <ul class="submenu">
                                     <li><a href='{{route('crouse')}}'>courses</a></li>
                                     <li><a href='{{route('crouse.details')}}'>course details</a></li>
-                                </ul>
+                                </ul> --}}
                             </li>
                             <li><a href='{{route('teachers')}}'>Teachers</a></li>
                             <li><a href="{{route('blog')}}">blog</a>
@@ -34,7 +34,8 @@
             <div class="col-xl-3 col-lg-2 col-md-5">
                 <div class="hb-s3-right">
                     <ul>
-                        <li><a class="btn btn-primary" href="{{route('login')}}">Login Now</a></li>
+                        <li><a class="btn text-danger  btn-info" href="" title="Wishlist"><i class="fa fa-heart" aria-hidden="true"></i> 6</a></li>
+                        <li><a class="btn btn-sm btn-primary" href="{{route('login')}}">Login Now</a></li>
                         <li class="search_btn"><i class="fa fa-search"></i></li>
                     </ul>
                 </div>

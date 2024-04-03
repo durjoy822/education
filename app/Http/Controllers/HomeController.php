@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\BlogCategory;
+use App\Models\Crouse;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,22 +13,35 @@ class HomeController extends Controller
     public function home(){
         return view('web.home',[
             'blogs'=>Blog::where('status',1)->get(),
+            'crouses'=>Crouse::where('status',1)->latest()->paginate(6),
+
         ]);
      }
      public function about(){
-        return view('web.about');
+        return view('web.about',[
+            'teachers'=>Teacher::where('status',1)->latest()->get(),
+        ]);
      }
      public function teachers(){
-        return view('web.teachers');
+        return view('web.teachers',[
+            'teachers'=>Teacher::where('status',1)->latest()->paginate(9),
+        ]);
      }
-     public function teachersDetails(){
-        return view('web.teachers_details');
+     public function teachersDetails($id){
+        return view('web.teachers_details',[
+            'teacher'=>Teacher::find($id),
+        ]);
      }
      public function crouse(){
-        return view('web.crouse');
+        return view('web.crouse',[
+            'crouses'=>Crouse::where('status',1)->latest()->paginate(6),
+        ]);
      }
-     public function crouseDetails(){
-        return view('web.crouse_details');
+     public function crouseDetails($id){
+        return view('web.crouse_details',[
+            'crouseDetail'=>Crouse::find($id),
+            'latestCrouses'=>Crouse::latest()->where('status',1)->take(6)->get(),
+        ]);
      }
      public function blog(){
         return view('web.blog',[

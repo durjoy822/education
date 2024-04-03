@@ -18,22 +18,26 @@ Teacher Details
         <div class="row">
             <div class="col-lg-4">
                 <div class="tch-left-thumb">
-                    <img src="{{asset('web')}}/assets/images/teacher/tch-left-thumb.jpg" alt="image">
+                    @if($teacher->image)
+                    <img src="{{asset($teacher->image)}}" style="height: 400px" alt="image">
+                    @else
+                    {{-- <img src="{{asset('web')}}/assets/images/teacher/tch-left-thumb.jpg" alt="image"> --}}
+                    <img  class="teacher_img" src="{{asset('web')}}/assets/images/not_found/teacher_not_found.png" style="height: 400px" alt="No Image Available" />
+
+                    @endif
                 </div>
             </div>
             <div class="col-lg-8">
                 <div class="teacher-contenttchd-content pl-5 pb-5">
-                    <h3>Monika</h3>
-                    <span>CSE Deperment Head</span>
+                    <h3>{{$teacher->name}}</h3>
+                    <span>{{$teacher->department}}</span>
                     <ul class="list-inline mt-4 mb-4">
-                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                        <li><a href="#"><i class="fa fa-deviantart"></i></a></li>
-                        <li><a href="#"><i class="fa fa-github"></i></a></li>
+                    <li><a href="{{$teacher->facebook}}"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="{{$teacher->twitter}}"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="{{$teacher->instagram}}"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="{{$teacher->github}}"><i class="fa fa-github"></i></a></li>
                     </ul>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo <span>inventore</span> veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet voluptatem.</p>
+                   <p>{!!$teacher->long_description!!}</p>
                 </div>
             </div>
         </div>
@@ -112,5 +116,5 @@ Teacher Details
         </div>
     </div>
 </div>
-<!-- cta area end --> 
+<!-- cta area end -->
 @endsection

@@ -35,7 +35,7 @@
                                 <select class="form-select" name="teacher_id" aria-label="Default select example">
                                     <option selected disabled>---Select Teacher---</option>
                                     @foreach ($teachers as $teacher )
-                                    <option value="{{$teacher->id}}">{{$teacher->name}}</option>
+                                    <option value="{{$teacher->id}}">{{$teacher->name}} - [{{$teacher->department}}]</option>
                                     @endforeach
 
                                   </select>

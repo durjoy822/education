@@ -25,7 +25,7 @@ Blog
                         <li><i class="fa fa-clock-o"></i> {{ date('F j, Y', strtotime($blog->creating_date)) }}</li>
                         <li><i class="fa fa-comments"></i> 3 Comments</li>
                     </ul>
-                  <h4 class="card-title mb-4"><a href='blog-details.html'>{{substr($blog->title,0,50)}}..</a></h4>
+                  <h4 class="card-title mb-4"><a href='{{route('blog.details',$blog->id)}}'>{{substr($blog->title,0,50)}}..</a></h4>
                   <p class="card-text">{!!substr($blog->short_description,0,100)!!}..</p>
                   <a class="btn btn-primary btn-round btn-sm" href="{{route('blog.details',$blog->id)}}"> Read More </a>
                 </div>

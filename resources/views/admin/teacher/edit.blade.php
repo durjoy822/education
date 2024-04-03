@@ -27,24 +27,12 @@
                                     <div class="text-danger">@error('name')  {{$message}} @enderror</div>
                             </div>
                         </div>
-                        {{-- <div class="row mb-3">
-                            <label for="depeartment" class="col-md-3 col-form-label">Teacher Depeartment</label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control"  value="{{$teacher->department}}" name="department" id="department"
-                                    placeholder="Teacher Depeartment" />
-                                    <div class="text-danger">@error('department') {{$message}} @enderror</div>
-                            </div>
-                        </div> --}}
                         <div class="row mb-3">
                             <label for="depeartment" class="col-md-3 col-form-label">Teacher Department</label>
                             <div class="col-md-9">
-                                <select class="form-select" name="department" aria-label="Default select example">
-                                    <option  disabled>---Select Crouse Department---</option>
-                                    @foreach ($crouseCats as $crouseCat )
-                                    <option value="{{$crouseCat->id}}" {{$crouseCat->id==$teacher->department?'selected':''}}>{{$crouseCat->name}}</option>
-                                    @endforeach
+                                <input type="text" class="form-control" value="{{$teacher->department}}" name="department" placeholder="Enter Teacher Department">
+                                <div class="text-danger">@error('department')  {{$message}} @enderror</div>
 
-                                  </select>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -109,7 +97,7 @@
                         </div>
                         <div class="justify-content-end row">
                             <div class="col-md-9">
-                                <button type="submit" class="btn btn-info addTeacher">Create New Teacher</button>
+                                <button type="submit" class="btn btn-info addTeacher">Update Teacher</button>
                             </div>
                         </div>
                     </form>

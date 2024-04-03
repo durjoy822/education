@@ -3,6 +3,12 @@
 Home
 @endsection
 @section('body')
+<style>
+    .crouse_img{
+        height: 250px;
+        width: 100%;
+    }
+</style>
 <!-- hero area start -->
 <div class="hero-area hero-s3 has-color">
     <div class="container">
@@ -56,110 +62,54 @@ Home
             </div>
         </div>
         <div class="commn-carousel owl-carousel card-deck">
+            @foreach ($crouses as  $crouse)
             <div class="card mb-5">
                 <div class="course-thumb">
-                    <img src="{{asset('web')}}/assets/images/course/cs-img1.jpg" alt="image">
-                    <span class="cs-price primary-bg">$150</span>
+                    @if($crouse->image)
+                    <img class="crouse_img" src="{{asset($crouse->image)}}" alt="image">
+                    @else
+                    <img  class="crouse_img" src="{{asset('web')}}/assets/images/not_found/teacher_not_found.png" alt="No Image Available" />
+                    @endif
+                    <span class="cs-price primary-bg">{{$crouse->price}} Tk</span>
                 </div>
                 <div class="card-body  p-25">
                     <div class="course-meta-title mb-4">
                         <div class="course-meta-text">
-                            <h4><a href='course-details.html'>Application Design Course</a></h4>
+                            <h4><a href='{{route('crouse.details',$crouse->id)}}'>{{$crouse->crouse_title}}</a></h4>
                             <ul class="course-meta-stats">
                                 <li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i></li>
-                                <li>36 <i class="fa fa-comment"></i></li>
-                                <li>85 <i class="fa fa-heart"></i></li>
-                            </ul>
-                        </div>
-                        <a href='course-details.html'><img class="course-meta-thumbnail rounded-circle" src="{{asset('web')}}/assets/images/author/auth1.jpg" alt="image"> </a>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sciunt. Neque quisquam est, qui dolorem ipsum tatem.</p>
-                    <ul class="course-meta-details list-inline  w-100">
-                        <li>
-                         <p>Course</p>
-                         <span>3 Year</span>
-                        </li>
-                        <li>
-                         <p>Class Size</p>
-                          <span>18</span>
-                        </li>
-                        <li>
-                         <p>Duration</p>
-                          <span>1 hour</span>
-                        </li>
-                    </ul>
-              </div><!-- card-body -->
-            </div><!-- card -->
+                                <li>36 <i class="fa fa-comment"></i>Comments</li>
 
-            <div class="card mb-5">
-                <div class="course-thumb">
-                    <img src="{{asset('web')}}/assets/images/course/cs-img2.jpg" alt="image">
-                    <span class="cs-price primary-bg">$150</span>
-                </div>
-                <div class="card-body  p-25">
-                    <div class="course-meta-title mb-4">
-                        <div class="course-meta-text">
-                            <h4><a href='course-details.html'>Data Structure & Algorithm</a></h4>
-                            <ul class="course-meta-stats">
-                                <li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i></li>
-                                <li>36 <i class="fa fa-comment"></i></li>
-                                <li>85 <i class="fa fa-heart"></i></li>
                             </ul>
                         </div>
-                        <a href='course-details.html'><img class="course-meta-thumbnail rounded-circle" src="{{asset('web')}}/assets/images/author/auth1.jpg" alt="image"> </a>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sciunt. Neque quisquam est, qui dolorem ipsum tatem.</p>
+                        @if($crouse->Teacher->image)
+                        <img class="course-meta-thumbnail rounded-circle" src="{{asset($crouse->Teacher->image)}}" alt="image">
+                        @else
+                        <img class="course-meta-thumbnail rounded-circle" src="{{asset('web')}}/assets/images/not_found/teacher_not_found.png" alt="image">
+                        @endif                    </div>
+                    <p>{!!substr($crouse->short_description,0,140)!!}</p>
                     <ul class="course-meta-details list-inline  w-100">
                         <li>
                          <p>Course</p>
-                         <span>3 Year</span>
+                         <span>{{$crouse->crouse_validation}}</span>
                         </li>
                         <li>
                          <p>Class Size</p>
-                          <span>18</span>
+                          <span>{{$crouse->class_size}}</span>
                         </li>
                         <li>
                          <p>Duration</p>
-                          <span>1 hour</span>
+                          <span>{{$crouse->class_duration}}</span>
                         </li>
                     </ul>
+                    <div class="course-meta-details d-flex list-inline  w-100 text-center">
+                        <button class="btn btn-sm  btn-info mt-1 mb-1">Wishlist </button> &nbsp;
+                        <button class="btn btn-sm btn-warning">Apply Now </button>
+                    </div>
               </div><!-- card-body -->
             </div><!-- card -->
+            @endforeach
 
-            <div class="card mb-5">
-                <div class="course-thumb">
-                    <img src="{{asset('web')}}/assets/images/course/cs-img3.jpg" alt="image">
-                    <span class="cs-price primary-bg">$150</span>
-                </div>
-                <div class="card-body  p-25">
-                    <div class="course-meta-title mb-4">
-                        <div class="course-meta-text">
-                            <h4><a href='course-details.html'>Android App Development</a></h4>
-                            <ul class="course-meta-stats">
-                                <li><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i></li>
-                                <li>36 <i class="fa fa-comment"></i></li>
-                                <li>85 <i class="fa fa-heart"></i></li>
-                            </ul>
-                        </div>
-                        <a href='course-details.html'><img class="course-meta-thumbnail rounded-circle" src="{{asset('web')}}/assets/images/author/auth1.jpg" alt="image"> </a>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sciunt. Neque quisquam est, qui dolorem ipsum tatem.</p>
-                    <ul class="course-meta-details list-inline  w-100">
-                        <li>
-                         <p>Course</p>
-                         <span>3 Year</span>
-                        </li>
-                        <li>
-                         <p>Class Size</p>
-                          <span>18</span>
-                        </li>
-                        <li>
-                         <p>Duration</p>
-                          <span>1 hour</span>
-                        </li>
-                    </ul>
-              </div><!-- card-body -->
-            </div><!-- card -->
         </div>
     </div>
 </div>
@@ -185,7 +135,7 @@ Home
                           <li><i class="fa fa-clock-o"></i> {{ date('F j, Y', strtotime($blog->creating_date)) }}</li>
                           <li><i class="fa fa-comments"></i> 3 Comments</li>
                       </ul>
-                    <h4 class="card-title mb-4"><a href='blog-details.html'>{{substr($blog->title,0,50)}}...</a></h4>
+                    <h4 class="card-title mb-4"><a href='{{route('blog.details',$blog->id)}}'>{{substr($blog->title,0,50)}}...</a></h4>
                     <p class="card-text">{!!substr($blog->short_description,0,200)!!}...</p>
                     <a class='btn btn-primary btn-round btn-sm' href='{{route('blog.details',$blog->id)}}'> Read More </a>
                   </div>
