@@ -11,7 +11,7 @@
                         @csrf
                         @method('PUT')
                         <div class="row mb-3">
-                            <label for="image" class="col-md-3  col-form-label">Backgroud  Image</label>
+                            <label for="image" class="col-md-3  col-form-label"> Image</label>
                             <div class="col-md-9">
                                 <input type="file" class="form-control" name="image" id="image"
                                     accept="image/*" />

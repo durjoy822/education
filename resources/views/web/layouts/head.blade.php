@@ -18,3 +18,6 @@
 <link rel="stylesheet" id="triggerColor" href="{{asset('web')}}/assets/css/triggerplate/color-0.html">
 <!-- modernizr css -->
 <script src="{{asset('web')}}/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
+<link rel="stylesheet" href="magicscroll/magicscroll.css"/>
+<script src="magicscroll/magicscroll.js"></script>

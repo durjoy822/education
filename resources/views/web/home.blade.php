@@ -15,7 +15,6 @@ Home
         <div class="row">
             <div class="col-xl-10 offset-xl-1">
                 <div class="hero-content hero-content-s3">
-                    <h3>admission ‘ 20</h3>
                     <h1><span class="primary-color">Your bright future is </span><b class="line-break"></b>our mission</h1>
                     <p>Find Your Preferred Courses & Improve Your Skills</p>
                     <form action="#">
@@ -176,92 +175,44 @@ Home
             </div>
         </div>
         <div class="row">
+            @foreach ($events as $event)
             <div class="col-md-6">
                 <div class="media align-items-center mb-5">
                     <div class="media-head primary-bg">
-                        <span><sub>MAR</sub>25</span>
-                        <p>2018</p>
+                      <h3> {{ date('F j, Y', strtotime( $event->date )) }}</h3>
                     </div>
                     <div class="media-body">
-                        <h4><a href="#">Affiliate Marketing</a></h4>
-                        <p><i class="fa fa-clock-o"></i>05:23 AM - 09:23 AM</p>
+                        <h4><a href="#">{{$event->title}}</a></h4>
+                        <p><i class="fa fa-clock-o"></i>{{ \Carbon\Carbon::parse($event->starting_time)->format('h:i A') }} - {{ \Carbon\Carbon::parse($event->closing_time)->format('h:i A') }}</p>
                     </div>
                 </div> <!-- media -->
             </div><!-- col-md-6 -->
-            <div class="col-md-6">
-                <div class="media align-items-center mb-5">
-                    <div class="media-head primary-bg">
-                        <span><sub>OCT</sub>25</span>
-                        <p>2018</p>
-                    </div>
-                    <div class="media-body">
-                        <h4><a href="#">Facebook Marketing</a></h4>
-                        <p><i class="fa fa-clock-o"></i>05:23 AM - 09:23 AM</p>
-                    </div>
-                </div> <!-- media -->
-            </div><!-- col-md-6 -->
-            <div class="col-md-6">
-                <div class="media align-items-center mb-5">
-                    <div class="media-head primary-bg">
-                        <span><sub>NOV</sub>25</span>
-                        <p>2018</p>
-                    </div>
-                    <div class="media-body">
-                        <h4><a href="#">Edustar Autumn</a></h4>
-                        <p><i class="fa fa-clock-o"></i>05:23 AM - 09:23 AM</p>
-                    </div>
-                </div> <!-- media -->
-            </div><!-- col-md-6 -->
-            <div class="col-md-6">
-                <div class="media align-items-center mb-5">
-                    <div class="media-head primary-bg">
-                        <span><sub>DEC</sub>25</span>
-                        <p>2018</p>
-                    </div>
-                    <div class="media-body">
-                        <h4><a href="#">Workshop PHP</a></h4>
-                        <p><i class="fa fa-clock-o"></i>05:23 AM - 09:23 AM</p>
-                    </div>
-                </div> <!-- media -->
-            </div><!-- col-md-6 -->
+            @endforeach
+
+
         </div>
     </div>
 </div>
 <!-- events area end -->
 
 <div class="testimonial-area ptb--120"><!-- testimonial area start -->
-    <img class="tst-bg" src="{{asset('web')}}/assets/images/bg/tst-bg-shape.png" alt="image">
+    <img class="tst-bg" src="{{asset($testimonials_Background->image)}}" alt="image">
+    {{-- <img class="tst-bg" src="{{asset('web')}}/assets/images/bg/tst-bg-shape.png" alt="image"> --}}
     <div class="container">
         <div class="row">
             <div class="col-lg-6 offset-lg-3 text-center">
                 <div class="tst-carousel owl-carousel">
+                    @foreach ($testimonials as $testimonial)
                     <div class="testimonial-content pb--40">
                         <div class="section-title sec-style-two">
                             <span class="text-uppercase primary-color mb-0">Our happy students</span>
                             <h2>Testimonial</h2>
                         </div>
-                        <h3>‘‘ Vous devez profiter de la vie. Toujours aimez, les personnespositives penser. ‘‘</h3>
-                        <h4>Kawsar Ahhamed</h4>
-                        <span>App Developer</span>
+                        <h3>‘‘ {!!$testimonial->content!!} ‘‘</h3>
+                        <h4>{{$testimonial->name}}</h4>
+                        <span>{{$testimonial->job_position}}</span>
                     </div>
-                    <div class="testimonial-content pb--40">
-                        <div class="section-title sec-style-two">
-                            <span class="text-uppercase primary-color mb-0">Our happy students</span>
-                            <h2>Testimonial</h2>
-                        </div>
-                        <h3>‘‘ Vous devez profiter de la vie. Toujours aimez, les personnespositives penser. ‘‘</h3>
-                        <h4>Kawsar Ahhamed</h4>
-                        <span>App Developer</span>
-                    </div>
-                    <div class="testimonial-content pb--40">
-                        <div class="section-title sec-style-two">
-                            <span class="text-uppercase primary-color mb-0">Our happy students</span>
-                            <h2>Testimonial</h2>
-                        </div>
-                        <h3>‘‘ Vous devez profiter de la vie. Toujours aimez, les personnespositives penser. ‘‘</h3>
-                        <h4>Kawsar Ahhamed</h4>
-                        <span>App Developer</span>
-                    </div>
+                    @endforeach
                 </div>
             </div><!-- row -->
         </div><!-- row -->

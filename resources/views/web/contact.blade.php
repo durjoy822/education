@@ -21,21 +21,21 @@
                         <h4>Contact Info</h4>
                         <p>PO Box CT16133 Collins Street West, Victoria 8007, Australia.</p>
                         <ul class="address">
-                            <li><i class="fa fa-phone"></i>+1 (2) 345 6789</li>
-                            <li><i class="fa fa-phone"></i>+1 (2) 345 6789</li>
-                            <li><i class="fa fa-envelope"></i>contact@yourdomain.com</li>
+                            <li><i class="fa fa-phone"></i>{{$contact->first_phone}}</li>
+                            <li><i class="fa fa-phone"></i>{{$contact->secound_phone}}</li>
+                            <li><i class="fa fa-envelope"></i>{{$contact->email}}</li>
                         </ul>
                         <ul class="social list-inline mt-5">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                            <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                            <li><a href="{{$contact->facebook}}"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="{{$contact->twitter}}"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="{{$contact->instagram}}"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="{{$contact->linkedin}}"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="{{$contact->youtube}}"><i class="fa fa-youtube"></i></a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-8">
-                    <div id="google-map"><img src="https://maps.app.goo.gl/6iqFuFErwJ4Liysd7"></div>
+                    <div id="google-map"><img src="{{$contact->map}}"></div>
                 </div>
             </div>
         </div>

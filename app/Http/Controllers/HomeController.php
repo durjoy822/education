@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
-use App\Models\BlogCategory;
+use App\Models\About;
+use App\Models\Event;
 use App\Models\Crouse;
+use App\Models\Contact;
 use App\Models\Teacher;
+use App\Models\Testimonial;
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,12 +18,18 @@ class HomeController extends Controller
         return view('web.home',[
             'blogs'=>Blog::where('status',1)->get(),
             'crouses'=>Crouse::where('status',1)->latest()->paginate(6),
+            'events'=>Event::latest()->take(4)->get(),
+            'testimonials'=>Testimonial::latest()->get(),
+            'testimonials_Background'=>Testimonial::select('image')->first(),
+
 
         ]);
      }
      public function about(){
         return view('web.about',[
             'teachers'=>Teacher::where('status',1)->latest()->get(),
+            'abouts'=>About::latest()->get(),
+            'video_tour'=>About::first(),
         ]);
      }
      public function teachers(){
@@ -56,6 +66,8 @@ class HomeController extends Controller
         ]);
      }
      public function contact(){
-        return view('web.contact');
+        return view('web.contact',[
+            'contact'=>Contact::first(),
+        ]);
      }
 }

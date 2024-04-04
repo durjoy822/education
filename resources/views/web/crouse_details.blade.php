@@ -217,10 +217,10 @@
                                 <div class="post-author-info">
                                     <div class="thumb">
                                         @if ($crouseDetail->Teacher->image)
-                                            <img class="crouse_img" src="{{ asset($crouseDetail->Teacher->image) }}"
+                                            <img  src="{{ asset($crouseDetail->Teacher->image) }}"
                                                 alt="image">
                                         @else
-                                            <img class="crouse_img"
+                                            <img 
                                                 src="{{ asset('web') }}/assets/images/not_found/teacher_not_found.png"
                                                 alt="No Image Available" />
                                         @endif
@@ -322,7 +322,7 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content p-5">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Please Fillup This Form For Apply</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Please Fillup This Form Crouse Inrolling </h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
