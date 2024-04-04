@@ -116,7 +116,7 @@
             <li class="side-nav-item">
                 <a data-bs-toggle="collapse" href="#application" aria-expanded="false" aria-controls="application"
                     class="side-nav-link">
-                    <i class="fa-solid fa-shuffle"></i>
+                    <i class="fa-brands fa-app-store-ios"></i>
                     <span> Students Application </span>
                     <span class="menu-arrow"></span>
                 </a>

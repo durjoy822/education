@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 
@@ -26,3 +27,7 @@ Route::get('/crouse/details/{id}', [HomeController::class, 'crouseDetails'])->na
 Route::get('/blog', [HomeController::class, 'blog'])->name('blog');
 Route::get('/blog/details/{id}', [HomeController::class, 'blogDetails'])->name('blog.details');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+
+
+Route::get('/students/login', [AuthController::class, 'login'])->name('student.login');
+Route::get('students/register',[AuthController::class,'register'])->name('student.register'); 
