@@ -10,3 +10,5 @@
  <!-- google map -->
  {{-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBO_5h890WNShs_YLGivCBfs2U89qXR-7Y&amp;callback=initMap"></script> --}}
  <script src="{{asset('web')}}/assets/js/scripts.js"></script>
+
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

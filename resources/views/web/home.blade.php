@@ -10,7 +10,11 @@ Home
     }
 </style>
 <!-- hero area start -->
-<div class="hero-area hero-s3 has-color">
+@if ($header->image)
+<div class="hero-area hero-s3 has-color" style="background-image: url({{asset($header->image)}})">
+@else
+<div class="hero-area hero-s3 has-color" style="background-image:url({{ asset('web') }}/assets/images/not_found/header_not_found.png)">
+@endif
     <div class="container">
         <div class="row">
             <div class="col-xl-10 offset-xl-1">

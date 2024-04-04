@@ -16,6 +16,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\OptimizeController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\TermsController;
 use App\Http\Controllers\UserController ;
 
 /*
@@ -77,5 +78,6 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'),  'verified
     Route::resource('/contacts',ContactController::class );
     Route::resource('/settings',SettingController::class );
     Route::resource('/newsletters',NewsletterController::class );
+    Route::resource('/terms',TermsController::class );
 
 });
