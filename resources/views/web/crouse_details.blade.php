@@ -34,7 +34,11 @@
 
     </style>
     <!-- crumbs area start -->
-    <div class="crumbs-area">
+    @if ($header->image)
+    <div class="crumbs-area" style="background-image: url({{asset($header->image)}})">
+        @else
+        <div class="crumbs-area" style="background-image:url({{asset('web')}}/assets/images/not_found/header_not_found.png)">
+    @endif
         <div class="container">
             <div class="crumb-content">
                 <h4 class="crumb-title"><span>Single</span> Course DeatilS</h4>
@@ -220,7 +224,7 @@
                                             <img  src="{{ asset($crouseDetail->Teacher->image) }}"
                                                 alt="image">
                                         @else
-                                            <img 
+                                            <img
                                                 src="{{ asset('web') }}/assets/images/not_found/teacher_not_found.png"
                                                 alt="No Image Available" />
                                         @endif
@@ -274,9 +278,11 @@
                             <h4 class="widget-title">Subcribe</h4>
                             <div class="subscribe">
                                 <p>Subscribe to my Newsletter</p>
-                                <form>
-                                    <input type="email" name="email" placeholder="Email address">
-                                    <button type="submit">Subscribe</button>
+                                <form id="subscribeForm" action="{{route('newsletters.store')}}" method="POST">
+                                    @csrf
+                                    <input type="email" class="mb-1" id="email" name="email" placeholder="Email address">
+                                    <div class="error_message pl-4"></div>
+                                    <button type="submit" class="addSubscribe mt-4">Subscribe</button>
                                 </form>
                             </div>
                         </div>
@@ -313,10 +319,6 @@
 
 
     <!-------------Apply now modal start ------->
-    <!-- Modal -->
-    <!-- Button trigger modal -->
-
-
     <!-- Modal -->
     <div class="modal fade" id="apply_now" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -407,4 +409,56 @@
         </div>
       </div>
     <!-------------Apply now modal end ------->
+
+
+
+
+    <!--------------news letter ajax data storing code  ------------>
+    <script>
+        $(document).ready(function(){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $(document).on('click', '.addSubscribe', function(event){
+                event.preventDefault();
+                let email = $('#email').val();
+
+                $.ajax({
+                    url: "{{ route('newsletters.store') }}",
+                    method: 'POST',
+                    data: {email: email},
+                    success: function(res){
+                       if(res.status=='success'){
+                        $('#subscribeForm')[0].reset('');
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Your Subscription done.",
+                            showConfirmButton: false,
+                            timer: 2000
+                            });
+                       }
+                    },
+                    error: function(err){
+                        let error = err.responseJSON;
+                        $('.error_message').empty(); // Clear previous error messages
+                        $.each(error.errors,function(index,value){
+                            $('.error_message').append('<span class="text-danger"> '+ value +' </span>');
+                        })
+                    },
+                });
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
 @endsection

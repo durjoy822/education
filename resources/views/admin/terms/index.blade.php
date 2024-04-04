@@ -1,6 +1,6 @@
 @extends('admin.layout.master')
 @section('title')
-    Newsletter Manage
+    Terms & condition Manage
 @endsection
 @section('body')
     <div class="row">
@@ -9,28 +9,32 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <h4 class="header-title float-start mt-2">Newsletter Information</h4>
-                            {{-- <a href="{{route('headers.create')}}"><button type="button" data-bs-target="#addCategoryModal" data-bs-toggle="modal"
-                                class="btn btn-light float-end">Add New Header</button></a> --}}
+                            <h4 class="header-title float-start mt-2">All terms & conditon Information</h4>
+                            <a href="{{route('terms.create')}}"><button type="button"class="btn btn-light float-end">Add New Terms</button></a>
                         </div>
                     </div>
                     <hr />
                     <p class="text-muted font-14">{{ Session::get('success') }}</p>
-                    <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
+                    <table id="datatable-buttons" class="table table-striped dt-responsive  w-100">
                         <thead>
                             <tr>
                                 <th>SL NO</th>
-                                <th>Email</th>
+                                <th>Terms</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        @if ($newsletters->count() > 0)
-                            @foreach ($newsletters as $index => $newsletter)
+                        @if ($terms->count() > 0)
+                            @foreach ($terms as $index => $term)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
-                                    <td>{{ $newsletter->email }}</td>
+                                    <td>{!! $term->terms !!}</td>
                                     <td>
-                                        <form action="{{route('newsletters.destroy',$newsletter->id)}}" method="POST" style="display: inline;">
+                                        <a href="{{route('terms.edit',$term->id)}}"
+                                            class="btn btn-success btn-sm TeacherUpdateForm"
+                                            title="Edit">
+                                            <i class="ri-edit-box-fill"></i> Edit
+                                            </a>
+                                        <form action="{{route('terms.destroy',$term->id)}}" method="POST" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm" title="Delete" onclick="return confirm('Are you sure you want to delete this teacher?');">

@@ -4,8 +4,11 @@ Teacher Details
 @endsection
 @section('body')
  <!-- crumbs area start -->
- <div class="crumbs-area">
-    <div class="container">
+ @if ($header->image)
+    <div class="crumbs-area " style="background-image: url({{asset($header->image)}})">
+        @else
+        <div class="crumbs-area " style="background-image:url({{asset('web')}}/assets/images/not_found/header_not_found.png)">
+    @endif    <div class="container">
         <div class="crumb-content">
             <h4 class="crumb-title"><span>Our</span> teachers</h4>
         </div>

@@ -14,12 +14,16 @@
                             <div class="col-md-9">
                                 <select class="form-select" name="page_name" aria-label="Default select example">
                                     <option selected disabled>---Select Header Page---</option>
-                                    {{-- @foreach ($teachers as $teacher ) --}}
                                     <option value="home_page">Home page</option>
                                     <option value="about_page">About page</option>
-                                    <option value="crouse_page">Crouse page</option>
-                                    <option value="crouse_details_page">Crouse Details page</option>
-                                    {{-- @endforeach --}}
+                                    <option value="crouse_page">All crouse page</option>
+                                    <option value="crouse_details_page">Crouse details page</option>
+                                    <option value="teacher_page">All teacher page</option>
+                                    <option value="teacher_details_page">Teacher details page</option>
+                                    <option value="blog_page">All blog page</option>
+                                    <option value="blog_details_page">Blog Details page</option>
+                                    <option value="contact_page">Contact page</option>
+
 
                                   </select>
                                     <div class="text-danger">@error('page_name')  {{$message}} @enderror</div>

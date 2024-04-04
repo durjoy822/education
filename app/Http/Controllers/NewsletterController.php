@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Newsletter;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class NewsletterController extends Controller
 {
@@ -11,7 +13,9 @@ class NewsletterController extends Controller
      */
     public function index()
     {
-        return view('admin.newsletter.index'); 
+        return view('admin.newsletter.index',[
+            'newsletters'=>Newsletter::latest()->get(),
+        ]);
     }
 
     /**
@@ -27,7 +31,20 @@ class NewsletterController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'email'=>'required|email|unique:newsletters'
+        ],[
+            'email.required'=>'Email field is required',
+            'email.email'=>'Please enter right email address',
+            'email.unique'=>'Already exist this email in database ',
+        ]);
+
+        $newsletter = new Newsletter();
+        $newsletter->email= $request->email;
+        $newsletter->save();
+        return response()->json([
+            'status'=>'success',
+        ]);
     }
 
     /**
@@ -59,6 +76,8 @@ class NewsletterController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Newsletter::find($id)->delete();
+        Session::flash('success','Subscribable email Deleted');
+        return back(); 
     }
 }

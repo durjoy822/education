@@ -293,6 +293,25 @@
                     </ul>
                 </div>
             </li>
+            <!--Terms & condition  module--->
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#terms" aria-expanded="false" aria-controls="terms"
+                    class="side-nav-link">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                    <span> Terms & Condition </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="terms">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{{ route('terms.create') }}"> Terms Manage </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('terms.index') }}"> Terms Manage </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
 
         </ul>
         <!--- End Sidemenu -->
