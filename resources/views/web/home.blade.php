@@ -8,6 +8,9 @@ Home
         height: 250px;
         width: 100%;
     }
+    .option{
+        padding: 10px;
+    }
 </style>
 <!-- hero area start -->
 @if ($header->image)
@@ -27,18 +30,15 @@ Home
                                 <input type="text" name="search" placeholder="Keyword  Search">
                             </div>
                             <div class="input">
-                                <select>
-                                    <option selected disabled>Category Course</option>
-                                    <option>Category Course</option>
-                                    <option>Category Course</option>
-                                </select>
+                                <input type="text" name="search" placeholder="Enter  Price Range">
                             </div>
                             <div class="input">
                                 <select>
-                                    <option selected disabled>Select Price Type</option>
-                                    <option>Select Price Type</option>
-                                    <option>Select Price Type</option>
-                                    <option>Select Price Type</option>
+                                    <option selected disabled>Category Course</option>
+                                    @foreach ($categories as  $category)
+                                    <option  class="option">{{$category->name}}</option>
+                                    @endforeach
+
                                 </select>
                             </div>
                         </div>

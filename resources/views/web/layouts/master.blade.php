@@ -34,7 +34,7 @@
     <footer>
       @include('web.layouts.footer')
     </footer>
-
+    @include('web.layouts.apply_now_modal')
    @include('web.layouts.script')
 </body>
 </html>

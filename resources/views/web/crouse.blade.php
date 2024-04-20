@@ -72,7 +72,8 @@ Crouse
                         </ul>
                         <div class="course-meta-details d-flex list-inline  w-100 text-center">
                             <button class="btn btn-sm  btn-info mt-1 mb-1">Wishlist </button> &nbsp;
-                            <button class="btn btn-sm btn-warning">Apply Now </button>
+                            <button class="btn btn-sm btn-warning" data-toggle="modal"
+                            data-target="#apply_now" >Apply Now </button>
                         </div>
                   </div><!-- card-body -->
                 </div><!-- card -->
