@@ -15,6 +15,24 @@
             background-size: cover;
             /* opacity: 1; */
         }
+        .modal-dialog{
+            max-width: 900px;
+        }
+
+        .modal-body select {
+        border: 1px solid #efefef;
+        margin-bottom: 20px;
+        padding: 10px 15px;
+        width: 100%;
+
+        }
+        .modal-body textarea {
+        border: 1px solid #efefef;
+        margin-bottom: 20px;
+        padding: 10px 15px;
+        width: 100%;
+        }
+
     </style>
 </head>
 
@@ -24,24 +42,27 @@
           <div class="sign_up_logo">
             <a href="{{route('home')}}"><img  src="http://127.0.0.1:8000/web/assets/images/icon/logo-black.png"></a>
           </div>
-          <header class="my-3">Register </header>
-          <form  action="#">
-            <input type="text"  placeholder="Full name" required />
-            <input type="text" placeholder="Email address" required />
-            <input type="password" placeholder="Password" required />
-            <input type="comfirm_password" placeholder="Repeted Password" required />
+          <header class="my-3"><h4>Register</h4> </header>
+          <form  action="{{route('auth.store')}}" method="post" >
+            @csrf
+
+            <input type="text"  name="name" value="{{old('name')}}" placeholder="Full name"  />
+            <div class="text-danger"> @error('name') {{$message}} @enderror</div>
+            <input type="text" name="email"  value="{{old('email')}}" placeholder="Email address"  />
+            <div class="text-danger"> @error('email') {{$message}} @enderror</div>
+            <input type="password" name="password" placeholder="Password"  />
+            <div class="text-danger"> @error('password') {{$message}} @enderror</div>
+            <input type="password" name="confirm_password" placeholder="Repeted Password"  />
+            <div class="text-danger"> @error('confirm_password') {{$message}} @enderror</div>
             <div class="checkbox">
-              <input type="checkbox" id="signupCheck" />
+              <input type="checkbox" id="signupCheckbox" />
               <span for="signupCheck">I accept all <a href="#" data-toggle="modal" data-target="#staticBackdrop">terms & conditions</a></span>
             </div>
-            <input type="submit" class="btn btn-sm btn-warning " value="Signup" />
+            <input type="submit" class="btn btn-sm btn-warning" id="signUp" disabled="disabled" value="Signup" />
           </form>
           <a href="{{route('student.login')}}"><div class="text-center pt-4">Already have a Account</div></a>
         </div>
       </section>
-
-
-
 
 
 
@@ -58,11 +79,7 @@
           </button>
         </div>
         <div class="modal-body">
-           <h5> Terms and Conditions</h5>
-            1. INTRODUCTION
-
-
-            The Site reserves the right to change, modify, add, or remove portions of these Terms and Conditions at any time without any prior notification. Changes will be effective when posted on the Site with no other notice provided. Please check these Terms and Conditions regularly for updates. Your continued use of the Site following the posting of changes to Terms and Conditions of use constitutes your acceptance of those changes.
+          {!!$terms->terms!!}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Done</button>
@@ -71,5 +88,16 @@
     </div>
   </div>
 @include('web.layouts.script')
+<script>
+    $(document).ready(function(){
+        $('#signupCheckbox').change(function(){
+            if(this.checked){
+                $('#signUp').removeAttr('disabled');
+            } else {
+                $('#signUp').attr('disabled', 'disabled');
+            }
+        });
+    });
+</script>
 </body>
 </html>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\StudentDashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,14 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 
 Route::get('/students/login', [AuthController::class, 'login'])->name('student.login');
-Route::get('students/register',[AuthController::class,'register'])->name('student.register'); 
+Route::get('students/register',[AuthController::class,'register'])->name('student.register');
+
+Route::post('students/store',[AuthController::class,'authStore'])->name('auth.store');
+Route::post('students/loginCheck',[AuthController::class,'loginCheck'])->name('login.checked');
+
+
+Route::group(['middleware' => 'student'], function () {
+    Route::get('students/dashboard',[StudentDashboard::class,'studentDashboard'])->name('student.dashboard');
+    Route::get('students/logout',[AuthController::class,'studentLogout'])->name('student.logout');
+
+});

@@ -34,9 +34,23 @@
             <div class="col-xl-3 col-lg-2 col-md-5">
                 <div class="hb-s3-right">
                     <ul>
-                        <li><a class="btn text-danger  btn-info" href="{{route('student.register')}}" title="Wishlist"><i class="fa fa-heart" aria-hidden="true"></i> 6</a></li>
-                        <li><a class="btn btn-sm btn-primary" href="{{route('student.login')}}">Login Now</a></li>
-                        <li class="search_btn"><i class="fa fa-search"></i></li>
+                        <li><a class="btn text-danger   btn-info" href="" title="Wishlist"><i class="fa fa-heart" aria-hidden="true"></i> 6</a></li>
+                       <li><div class="dropdown">
+                            <button class="dropbtn btn btn-warning"><i class="fa fa-cog" aria-hidden="true"></i> Settings</button>
+                            <div class="dropdown-content">
+                                @if (Auth::guard('student')->check())
+                                <a href="{{route('student.dashboard')}}">Dashboard</a>
+                                <a href="{{route('student.logout')}}">Logout</a>
+                                @else
+                                <a href="{{route('student.login')}}">Login</a>
+                                <a href="{{route('student.register')}}">Register </a>
+                                @endif
+
+
+
+                            </div>
+                          </div>
+                        </li>
                     </ul>
                 </div>
             </div>

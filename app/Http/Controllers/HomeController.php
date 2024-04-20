@@ -10,6 +10,7 @@ use App\Models\Contact;
 use App\Models\Teacher;
 use App\Models\Testimonial;
 use App\Models\BlogCategory;
+use App\Models\CrouseCategory;
 use App\Models\Header;
 use Illuminate\Http\Request;
 
@@ -23,6 +24,7 @@ class HomeController extends Controller
             'testimonials'=>Testimonial::latest()->get(),
             'testimonials_Background'=>Testimonial::select('image')->first(),
             'header'=>Header::where('page_name','home_page')->first(),
+            'categories'=>CrouseCategory::all(), 
 
 
         ]);

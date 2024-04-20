@@ -77,7 +77,8 @@ Route::middleware([ 'auth:sanctum', config('jetstream.auth_session'),  'verified
     Route::resource('/headers',HeaderController::class );
     Route::resource('/contacts',ContactController::class );
     Route::resource('/settings',SettingController::class );
-    Route::resource('/newsletters',NewsletterController::class );
     Route::resource('/terms',TermsController::class );
 
 });
+
+Route::resource('/newsletters',NewsletterController::class );
